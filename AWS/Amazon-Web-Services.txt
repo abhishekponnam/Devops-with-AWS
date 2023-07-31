@@ -1,0 +1,2646 @@
+================
+Devops With AWS
+================
+========
+keywords
+========
+=> AZ :- Avalibility Zones. 
+=> $  :- normal user
+=> #  :- root user.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1) IaaS (Infrastructure as a service)  
+	Ex: AWS
+2) PaaS (platform as a service)
+	ex: Azure
+3) SaaS (Software as service)
+	ex: salesforce
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+AWS
+=====
+-> Amazon Web services .
+-> Amazon company is the provider of AWS
+-> Amazon company is providing several services required for our application through web  hence it is called as
+	Amazon web services.
+-> AWS is providing the infrastructure as a service (IaaS).
+-> whatever is the infrastructure is we need to host/setup our application we can take from the aws.
+-> we can use AWS services as on  PAY_AS_YOU_GO model.
+
+***note : we have to pay money for AWS for what we use from AWS (Ex: Post paid bill).
+
+-> In order to use the AWS we need to make an account .
+	=> to create Account acess the  below url.
+		
+		url : https://aws.amazon.com/
+
+-> by accessing the above url we can create the AWS account. by default the AWS account is created.
+
+
+Q) How many types of account we can create ?
+A) we can create two types of accounts:
+		1) ROOT   Account
+		2) IAM   Account (Identity access  Management)
+	
+	-> Company will manage root account  as a team member we will use  IAM Account .
+
+Note : Once root accout is created , with root account we can create several IAM accounts  for managing work  in 
+	AWS.
+   
+ 
+ => In 2006 , AWS began to start providing the IT as Infrastructure Service  to business as  web services  , now it is 
+	 also Known as  Cloud Computing.
+
+=> AWS is providing the more than 200 services 
+	( which we can choose that is required for the bussiness).
+
+=> AWS is providing all types of service which we required  for application.
+		-> Machines.
+		-> servers.
+		-> databases
+		-> Storage
+		-> Network
+		-> Security
+		-> Analytics
+		-> Monitoring .....
+
+
+Note : if  we use the aws cloud in our project then we focus on development & bussiness because  infrastructure
+ wecan use form AWS.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+=> AWS providing the cloud services to 190+ countries.
+=> AWS is providing services across the globe using    REGIONS   &   AVALIBILTY  ZONES (AZ)
+=>  AWS has the global infrastruture .
+=>  Region means geographical loaction.
+=>  Availibilty Zone means "DATA CENTRE".
+=>  Data centre is facilty that provides  shared access to applications and  data using  complex Networks.
+=> Data centre means a room with the servers and complex networks.
+
+-> AWS is having the 26 regions & 84  Avalibilty zones.
+
+	note :    Amazon is announced the new region and Avalibilty zones are coming in future ..
+	note :   In India there is 1 region 
+			i.e Mumbai.
+		there is 3 Availibity zones. 
+	->  1 region can have multiple AZ ' s 
+	->  AZ is also called as Data Centre (Avalibilty zone).
+	-> servers / Instances are placed in Data centre.
+*** note *** : 
+* it is highily is recommended to keep our servers in multiple  avalaiblity zones.
+* if 1 AZ is go down , our servers  will be running  in another AZ.
+* if each AZ will be avalible with 100kms distance.
+
+=> Mumbai -> ap-south -1 (asia - pacific) .
+	=> AZ's  :
+		ap-south-1a
+		ap-south-1b
+		ap-south-1c
+=============================================================================================
+
+What is EC2 :
+------------------
+=> EC2 stand for  Elastic Compute cloud .
+=> By using EC2 we can create the virtual machine required for our project.
+		computer/Machine/Server/Vm ===> Instance 
+=>EC2 is the most well Known and popular service.offers the ability to run the applications  on public cloud.
+=> EC2 provides the resizible computing capacity in the cloud so developers can enjoy the great scalibilty 
+       for building and appliaction.
+=> Instead of purchasing your own hardware and connecting it to the network, Amazon will give you nearly       unlimited virtual machines to run your own applications  while they take care of the hardware.
+=> AWS supports multiple operating systems  from windows to  many flavours of Linux. As a coustmers , you are also 
+      able to bring your own costum operating system and run in the aws platform.
+=======
+RDP
+=======
+=> RDP stands for remote desktop connection,it is  one application in Windows OS.
+=> Using RDP we can  connect  from one Windows Machine  to another  Windows Machine  using DNS, Username
+      Password.
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Windows
+========
+=> Windows Operating System is developed by Microsoft.
+=> it is Paid Software.
+=> Windows is a Single User based operating System .( Only One User Can access  at a time.)
+	note :
+		In Windows one User can run Multiple Apps at a time.
+			ex: Browser,notepad,Mspaint.
+=> Windows OS is less Secure . Hackers can Attack/Hack the Windows Machines Easily.
+=>  We need to Install anti-virus software Manually in windows  OS to  protect  Our Applications  from Virus.
+=> Windows OS is recomended to use  for personal Computer because  it is having  Beautiful GUI(Graphical User 
+      Interface).
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+LINUX
+======
+
+=> To Overcome the problems of  Windows operating System we use the Linux.
+=> Linux  is free and open-Source operating System.
+=> Linux OS Source code is avilable in the internet   thats why its called as   Open-Source.
+=>  Anybody can customize the source code of linux for their requirement. 
+=> Linux is multi-user based operating System.
+=> Linux  is highily Secured.
+=>  Linux is Community based Operating System.
+=> Linux is highly recomended for the bussiness.
+	(servers, app Hosting, DB Servers).
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Evolution of LINUX Operating System.
+------------------------------------------------------
+=> The first OS come into Market in 1950's
+=> General Motors  research Lab  implemented  the 1st  OS  in early 1950  for IBM 701.
+=> 1960's 1st Version of Unix Operating system  came into Market.
+=> the Microsoft release the first OS in 1981. it is called is MS-DOS.
+=> Microsoft  Windows with GUI came into 1985. 
+=> In 1991 a student Linus Torvalds  made some changes into minux OS and release into market as free of Cost. that is called as Linux Operating System.
+
+Flavours of LINUX:
+
+RHEL --------> Red Hat 
+CENTOS ------> communtity
+UBUNTU ------> Communtity
+OpenUse -------> Microsoft
+Fedora 
+Kali Linux
+
+
+
+Q) What is key-pair in AWS EC2 ?
+
+=> When we create the EC2 instance then it will provide  a Key-pair for us.
+=> Key-pair consists of the Public Key && Private Key.
+=> AWS store the public key we have to store the Private key.
+=> This public Key and private key is used to connect the EC2 instance securely .
+=> After Lauching the EC2 instance , If we want to connect with the  EC2 instance then we need to send the private Key to AWS EC2 instance.
+=> If our private key is matched with the EC2 public key then the connection Will be established otherwise the  connection will be rejected.
+=> Key pair is generated in PEM file .pem (privacy enhanced mail).
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------Connecting EC2 instance with putty ?
+================================
+=>  Putty is a free software which is used to connect from our windows machine to Linux machine.
+=> putty can't understand .pem files hence we need to convert the .pem file to .ppk file. 
+=> By using puttygen software we can convert .pem to .ppk file.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------Linux File System
+================
+=> In Linux every thing  is treated as files only.
+=> All the files are Linux OS are divided into 3 catageories:
+	1) Ordinary files
+	2) directory files
+	3) Device files
+
+=> The files which contains the raw data directly  are called as Ordinary files
+	ex: text files, binary files(Audio and video files,images)
+
+=> Directory files in linux nothing but folders in windows.
+	ex: devops
+
+=> In Linux every device will be represented as a file. By using device files we can communicate with the devices.
+=> In Linux everything is represented as tree Structure.
+=> Linux Starts from Root directory .
+
+Q) How to check the type of files ?
+ Sol) we use the command called "ls  -l".
+
+l - represents  the link file.
+d - represents the directory file.
+-  - ordinary file
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+LINUX ARCHITECTURE 
+====================
+1) /  (Root) :  Root directory of the entire file system in Linux.
+=> every single file and directory starts  from the root directory.
+=> Root account user will have permissions to write under this directory.
+
+**note : 
+	=> '/'  and '/root' are not same.
+	=> '/' is represents root directory.
+	=>'/root'  represent root account user home directory.
+
+2) /bin : binary files will be available here (Executable file)
+=> This directory files which can be executed by user.
+	Ex: ls ,ping , mkdir , vi ...etc . 
+
+3) /boot : boot loader file are available are here.
+=> kernel files  vmlinuz,initrd , grub ... etc .
+
+
+4) /dev : device files  are available here.
+=> This contains terminal devices. 
+	ex: CPU ,HD, USB ..etc .
+
+5) /etc : host specific system wide configuration files.
+=> it contains configuration files required for all programs in OS.
+=> it also contains startup and shutdown shell Scripts for individual programs.
+
+6) /home : users home directory.
+=> home directory is used for to save all users personal files.
+	ex: /home/ubuntu , /home/abhishek 
+
+7) /lib : Libraries for the binaries that are present in /bin & /sbin
+=> library names are either lib* or  so* or ld *.
+
+8) /media : mount points for the removable devices .
+       => temperary  mount directory for removable devices.
+
+9) /mnt : Temporary mounted file system.
+      => temp mount directory  where sysadmin  can mount  file system.
+
+10) /opt : optional application software packages.
+	=> add on applications should be installed  under this  /opt.
+
+11) /sbin : system binaries
+	=> just like bin it also contains exceutable files 
+		ex: ifconfig
+
+12)/srv : Service data
+	=> Site specific data served by system.
+	=> data offered by servers.
+	=>server  specific  server related data.
+
+13) /tmp : Temporary files
+	=> temporary files will be stored in /tmp  folder
+	=> files under this directory  will be deleted once if the system is rebooted.
+
+14) /proc : Kernal information as files.
+	=> it contains infomation about system process
+
+15) /usr : User utilites and  applications are present.
+	=> it contains binaries ,libraries, documention and  the source code  for second level of applications .
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Linux Commands 
+===============
+pwd :     present working directory
+cd :         change directory 
+	ex : cd < dir-name> to move forward
+	        cd ..    to move back word.
+whoami: to print account username.
+ls : List out the files and directories present the given directory.
+	ls : to list the files in alphabetical order.
+	ls  -r : reverse of alphabetical order.
+	ls | more : list the files in line by line.
+	ls -l : it will display the long listing of files.
+	ls -t : it will display based on last modified date and time.
+	ls -lt : it will show both chacterstics recent modified files and  long list
+	ls -la : list out the files and directories with all hidden files. including the . & .. files are shown
+	ls -lA: excluding the . &.. files all files are shown
+	ls -F : it will represent based on type
+		directory ----> /
+		executable files ----> *
+	ls -f : shown all files without colors.
+	ls -i: it will display all files with i-node number. 
+		note : i-node represent the address of the  files and where attributes are stored.
+	ls -lR : it will display the content of directory and subdirectory.
+
+*** note : we can execute the commands with multiple options. 
+
+
+
+date : to print the date :
+	date  +%D   --->for spefic date 
+	date  +%T 
+
+cal : to print current month calender.
+cal 05 2020 : to print exact month calender.
+
+mkdir : to make directory
+	mkdir <dir-name> (1 directory)
+	mkdir <dir1> <dir2> ...(multiple directories)
+	mkdir <dir1>/<dir2> /..    (one directory inside other directory).
+rmdir : to remove the empty directory.
+	rmdir <dir-name>
+	rm -r  <dir-name> ( for the non empty directory..)
+touch   f1.txt     ------> ( to create the empty file).
+cat > f2.txt    ----------> ( to create the file with content).
+cat >> f2.txt  -----------> ( to append the content).
+cat f1.txt   ---------------> ( to print the content )
+
+head <file name> ------> (to print the top 10 lines of file.)
+	head -n 100 <file-name> ----> to specify the top 100 lines of conent
+ 	head -n -2 <file-name> -------> to exclude the last 3 lines.
+
+tail <file-name> ------------->(print the last 10 lines of file.)
+	tail -n 100 <file-name> ----> to specify the last 100 lines of conent
+	tail -n  +3  <file name > -----> its going to print from 3 line to 100 line.
+
+Q) how command used to Know the Word Count ..?
+wc  <file name>  ------------->(we can count file data using word count command.)
+	wc file.txt
+		lines  words  characters  file.txt
+
+
+Q) Copy the data data form one file to another file?
+cp   <file name1> <recipent.txt> ----------> (copy data form  file to recipent)
+
+
+
+Q)Merge the multiple files into single file in linux.
+cat   f1.txt   f2.txt   > f3.txt   ------>( copy content form f1 & f2 files to f3 file).
+
+
+Q) rename the file in linux ?
+mv   f1.txt   f21.txt ( to rename the file f1 to f21 we use mv command).
+
+
+Q) Command used to get  logs from server .
+sol) we can use tail command to print the data logs from putty.
+
+Q) Copy the content from one directory to another directory ?
+Sol)   mv  dem0/*   demo_new   -----> ( it will copy the conent from demo to new_demo).
+
+==================================================================================================
+grep
+=====
+=> grep stands for "global regular expersion print ".
+=> to see the exceptions occured in the application.
+=> to check the exception messages we can use the grep command.
+=> in window we use ctrl + f search data in text file. 
+=> in Linux  we use grep  command to search the words
+  
+	> grep    abhi    f1.txt --------->( it is by default  case sensitive here it will show only       ex: abhi )
+	> grep  -i   abhi  f1.txt ---------> ( it is not case sensitive  its will show        Ex: Abhi ,aBhi, abhi,ABHI ...) 
+	> grep  -c  abhi f1.txt ------->( it will show the count )
+	> grep  abhi  * ----------------->( it will search in all files and print)
+
+***note :     > grep exception * 
+		=> it will search for exception text  in all log files  and it  will print  the lines which contains  			exception text .
+=> for grep command we can pass multiple options also.
+	ex : grep  -l  'abhi' *   ----->( it  will print all files with abhi and its details.)
+
+
+Q) print the diffrence in two differnt files ?
+=>  diff  f1.txt  f2.txt
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Editor
+======
+=> To edit  file in linux using  'vi' or 'vim'  editor 
+	vi file.txt
+	 => to enter into insert mode press 'i'.
+	=> make changes  in text the press ESC  and  : wq
+
+UseCase : if we need to modify the application  specific configuration  files then   we can  use this vi editor .
+	 ( modifiying the data base credentials and modifiy the msg ...etc)
+
+
+------------------------------------------------
+Requirement :
+=============
+	we have the data in file.txt in that we have to change the word consider 'unix'  to 'linux'.
+
+=> by using vi editior  finding the word  'unix' in every line and changing it to 'linux' is difficut and time taking  process . 
+=> In this secenrio we can use "sed" command.
+=> "sed " stands for   stream editor.
+=> by  using the sed command we can modify the data in files without opening.
+	
+	syntax :  $ sed   's/unix/linux'  file.txt   ------> ( this will modify only the 1st  occurence in each line)
+
+=> if we want to modify  nth occurence in text file.txt.
+
+	syntax : $ sed   's/unix/linux/<n>'  file.txt
+	                $ sed   's/unix/linux/2'   file.txt    ---------------->(if we want to change the 2nd occurence.)
+ 
+=> if we want to replace all the occurences .
+	
+	syntax : $ sed   's/unix/linux/g'  file.txt
+
+=> to delete a nth particular line in file using  sed.
+	syntax:       $ sed   '<n>d'  file.txt
+		$ sed   '3d'  file.txt ( deleting the 3rd line)
+		$ sed   '$d'  file.txt ( deleting the last line)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------Q) Difference between the find and locate command in linux ?
+
+=> find and locate are used to find the  files/directories.
+=> in some linux distrubutions the 'locate'  command is not  work directly  we  have to install it .
+	> $ sudo apt install mlocate
+=> after installation 
+	>$ locate    apache              ( it will loacte the files and directories named 'apache')
+	>$ locate    -c  apache         ( gives the count of apache)
+	>$locate    *.txt                     ( it will find the files & dir named end with .txt)
+
+***note : locate command  will maintain  its  own database   and it will gave  results  from its  database. 
+
+
+=> find command  will search  for files  in linux file system. it is a hierarchial command.
+	
+	$ find  /home  -name  f1.txt
+	$ find  /tmp  -type  f  -empty ( find all empty files in dir)
+	$ find  /tmp  -type  d  -empty( find all  empty directories in tmp dir)
+
+***note : performance wise the 'locate'  will be faster  than 'find'   command  but  'locate'   command will not give                    results for the newly created files/dir  immediately .  if we want newly  created results  also then  we have                    to update locate  database.
+
+=> 'man'  command is used  to get the documentation for the  particular  command.
+		
+		$ man  locate  ====> it will give the entire details of locate command.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Permissions for Linux files
+=======================
+=> we use files to use data . In order to protect  our data we need to secure our files.
+=> We can secure our files  using file permissions in Linux.
+
+UseCase for the importance of  permissions of  files.
+-----------------------------------------------------------------------
+1) we have  a devops team of with  4 members , 2 are experienced and  2 members  are freshers  
+
+=> Our  application running inside a server  which is installed  in Linux  Virtual Machine.
+=> Our application is reading config -data from a file ( db config , mail config ,security  config ).
+
+*** note : We should not allow every body to acesses the  config files because its having the sensitive data .
+
+sol)  as we have 4 member in team we should not allow  2 freshers to modify the files . they can see it only experienced can modify the  files.
+
+***note:  if we allow the fresher to modify the config files if they make some mistake then overall project will be colapsed . so freshers can read the files and experienced can read & modify the file.
+
+==========
+Commands
+==========  
+=> to see file permissions  and commands is 'ls -l'.
+r===> read permission
+w===> write permission
+x====> execute permission
+-  ====> no permission 
+
+there  are  3 segements in file system
+ 
+	rwx  rwx  rwx
+	  1       2        3
+
+1 ===> represents as  user permission  on the file.
+2 ===> represents  as  group permission  on the  file .
+3 ===> represents  as  other  permission  on the file. 
+
+Ex:  -r-xrw---x  file1.txt
+	=> user having read and execute ( not write permission).
+	=> user having read and write ( not execute permission).
+	=> user having execute ( not read and write )
+
+=> Add write permission for others on file.txt 
+	$ chmod  o+w  file.txt 
+		o  : means other 
+		+  :  means add
+		w  : means  write 
+
+=> remove  read permission  for the group  on file.txt
+	$ chmod  g-r  file.txt
+		g   :  group
+		-    :  remove 
+		w   :   write 
+
+>>>=> to give the all permissions we  can use the " chmod 777  <filename>  " 
+
+Symbolic representation of  file permissions
+
+	number		permission
+	-----------		-----------------
+	 0   		  no permission
+	 1          		  Execute 
+	 2 		   write 
+	 3 		  execute and write
+	 4 		   read
+	 5  		   read & execute
+	 6 		    read & write 
+	 7 		    read & write and execute 
+
+>$ chmod  765  file.txt
+	
+	7 : read write and execute  --->(user)
+	6 : read & write  ------------------>(group)
+	5 : read & execute ----------------> (others)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Working  with user accounts 
+========================
+=> we can create the multiple user accounts in Linux 
+=> where multi users can acess  the Linux.
+
+Create the user in Linux
+---------------------------------
+$ sudo  adduser  <user-name> 
+
+Delete the user in Linux
+----------------------------------
+$ sudo  userdel  <user-name>
+
+Switching the user 
+-------------------------
+$  su - <user-name> 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Working with the user groups  in Linux
+==================================
+=> group means for collection of  user.
+=>  the primary purpose of  group  is to  define set  of privilages  for a given  resources  that  can be  shared  among  users   with in group .
+
+to see existing groups :
+-----------------------------
+$  cat  etc/group
+
+
+Creating group in Linux:
+---------------------------------
+$ sudo  groupadd   <grp-name>
+
+Add user to group :
+------------------------
+
+$ sudo  usermod  -aG  <grp-name>  <username> 
+
+To check the  user groups 
+----------------------------------
+$  id  <user-name>
+
+Delete  user  from  the group
+---------------------------------------
+$ sudo  gpasswd   -d  <user-name >  <group-name>
+
+Delete  a  group
+---------------------
+$ sudo  groupdel  <grp-name> 
+
+==================================================================================================
+chown
+=======
+=> 'chown' is defined as change owner. by using this command we can change owner /group  of a file .
+
+changing owner of the file
+------------------------------------	
+	$  sudo chown <user-name>  <file-name>
+
+=> change the user of a file.txt. before the user was ubuntu,now change user to user1
+	ex: 
+	sudo chown user1 file.txt
+
+changing  group of the file 
+-------------------------------------
+	 $  sudo chown :<grp-name>  <file-name> 
+
+changing  Owner & group of the file
+---------------------------------------------
+	$  sudo  chown  username:grp-name < file-name>
+
+============================================================================================
+Installing apache2 sever  in Ubuntu Machine
+==================================
+=> Login into AWS account .
+
+=> Start EC2 instance  (ubuntu OS).
+
+=> Connect to EC2 instance using putty.
+
+=> Switch to root user account using (sudo su command)
+
+=> updating the existing packages in linux OS linux using 
+	# sudo apt update 
+
+=> Install apache2  server in Linux using  below command. 
+	# sudo apt install apache2
+
+=> check apache2 version
+	# apache2 -version
+
+=> to start the apache2  server.
+	# sudo systemctl  start apache2
+
+=> to check the status of apache2 server.
+	# sudo systemctl status  apache2.
+
+Note :
+	we have installed apache2 server is a webserver.
+	Apache2 server is also called as apache HTTP server.
+	apache2 is used to run the web applications.
+	Apache HTTP  server  will run on  8080 port number.
+
+=> to tranfer the files from windows to EC2 is by using winscp. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Networking Commands in Linux
+=========================
+
+ifconfig :- it is used to check the ip address of our machine.
+	
+	$ifconfig
+
+ping :- it is used to check that machine/server is  up and  running or not.
+	
+	$ ping  <ip/hostname>
+		Ex: ping google.com
+
+curl :-  it is used to get  response from server.
+	
+	$ curl <server-url>
+
+wget :-  it is used to download  data.
+
+	$ wget <url>
+
+
+============================================================================================
+Shell Scripting
+===========
+=> shell is responsible to read commands  given by user . 
+=> Shell is a interface between  user and kernel.
+=> when user  executes  a command then  shell will  take that command  and will  verify the syntax  of that command. if syntax is valid  shell  will give  command  instructions to  kernel.
+=> kernel will interact with hardware and will perform  operation.
+
+there are several shells  available in Linux
+
+1) Bourne shell
+2) Bash shell
+3) korn shell
+4) CShell
+5) TShell
+6) Zshell
+
+***Note : out of all above shells the bash shell is most powerful shell. most of linux admin use the bash shell
+
+=> we can see  all  shells available  in our linux  machine using below command.
+
+	$ cat  etc/shells
+
+=> to Know the default shell we can use below command.
+
+	$  echo  $SHELL
+
+
+Q) What is Scripting ?
+=> Sequence of commands  saved  in a file  is called as scripting .
+=> the  scripting in a file is called script file.
+=> Script files have  .sh extension
+         
+
+		Shell+Scripting ==> Shell Scripting
+
+
+** The process of writing sequence of commands  in a file  and executing that file using shell is also called as SHELL SCRIPTING . **
+
+***Note : we will use shell scripting to Automate the tasks 
+	Ex:  create file ,delete file ,start and stop .....etc
+
+
+=================================
+Write and execute first shell script  in Linux.
+--------------------------------------------------------
+=> Write a file with a name task.sh
+=> edit the file using the vi editor and below command save and quit
+	whoami
+	pwd
+	date
+	ls -l
+=> Add execute permission  for the file using 'chmod' command.
+	$ sudo  u+x  task.sh
+=> Execute the file using below command	
+	$  ./task.sh
+
+
+
+================================
+RealTime usecase of  for Shell Scripting
+================================
+=>Creating and Deleting the log files.
+=> taking log files backup.
+=> Installing softwares.
+=> Start/stop servers
+=> Daily server restarts ...etc
+===================================================
+bash scripting
+===========
+echo:- to print content of terminal.
+read :- to read value from variable for terminal.
+$<variable> :- to read value from variable and print use echo
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Requirement :
+	 Write a shell script which will ask user to enter the name and say good evening to the user.
+
+
+greeting.sh
+========
+echo "enter your name"
+read name
+echo "hey $name ,good evening"
+
+
+=======
+shebang
+=======
+
+#! ==> Shebang
+
+=> shebang is used to specify to operating system that which shell  to execute our script file.
+=> hence we need to specify it on 1st line of shell script .
+
+#!/bin/bash   =====> here we are specifing that  we are using bash shell scripting 
+
+=======
+Variable
+=======
+=>variables are used to store data.
+=> we can say that data is placeholders of data.
+=> variables will represent data in key-value format.
+=> In shell scripting there is no concept of  data-type. Every value is treated as text only.
+
+There are two types of variables
+	1) Environmental variables.
+	2) User defined variables.
+
+=> Environement variables  will be used  by operating system. we can call this variables as system variables.
+=> we can see  all the  environment/system variables using 'env'  command from putty terminal. 
+=> based on requirement we define some variables those are called as user defined variables.
+
+
+Rules of variable:
+---------------------
+=> it is recommended to use the upper case charcters for the variable names.
+=> if variable contains multiple words  then use the _(underscore) to separate the words.
+=> varible name should not start with digit.
+=> we should not use special symbols like  @,#,$,% ...
+
+Variable Scopes
+=============
+there are 3 types of  variable scopes.
+	1) session scope 
+	2)user  scope
+	3) system scope
+
+=> session scope is a terminal scope.
+=> if we close the terminal then the data will be removed.
+
+=> user scope  means variable  will be available for a particular user account.  
+=> to set the variables for a specific user  we will use  .bashrc  file.
+=> .bashrc  is a hidden file located in every  user home directory . to show that 'ls  -ls'.
+
+=> System scope variable will be available for  all  users in  the  machine.
+=> System scope is avalible in  /etc/profile
+
+-------------------------------------------------------------------------------------------------------------------------------
+=> functions are used for performing  some action.
+=> Control statements  are  used to  execute  commands based on conditions.
+=> loops are used to execute the command multiple times.
+---------------------------------------------------------------------------------------------------------------------------------
+Command Line arguments
+=====================
+=> the arguments  we will pass  while executing  script files  are called  as command line arguments.
+	
+	$ ./file.sh  =================>(normal execution)
+	$  ./file.sh  linux is easy =======>(with command line arguments execution)
+
+=> To print the length of aurguments  we  can use the command  "echo  $#".
+
+=> command line args are  used to provide  input for script.
+
+=> we can access command  line  arguments  in the script  using  $no.
+	
+	Ex: ./file.sh  abhi  21  07
+	
+	$1=>first argument  =====>(abhi)
+	$2=>second argument===>(21)
+	$3=> third argument.====>(07)
+	$0=> primary argument==>(./file.sh)
+
+-------------------------------------------------------------------------------------------------------------------------
+Comments
+=========
+=> comments are used to provide meta data about  our script.
+=> metadata  is data about data.
+=> by looking comments other can easily understand.
+=> for the single line comments we use '#'.
+
+Mutli Line comments:
+================
+<<COMMENT
+.........................write comments here
+COMMENT
+
+
+program to add two numbers.
+=======================
+
+#!/bin/bash
+
+echo "This is bash Scripting"
+echo  "enter the value of 1st number"
+read A
+echo "enter the value of 2nd number"
+read B
+# the sum of number logic
+sum=$(($A + $B))
+
+echo "the sum $A  and $B  is $sum"
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Control Statements
+===============
+=> if we want to execute our script commands based on  conditions  then we can use control  statements
+	
+	if else
+	if elif  else
+=====
+if else
+=====
+=> checking for the single condition.
+syntax:
+	if [condition]
+		then
+		    echo stmts
+	else
+	      echo stmts
+
+
+sample program:  To check your are eligible for vote or not
+============
+#!/bin/bash
+
+echo "enter your age"
+read  age
+
+if  [ $age -ge 18 ]; then
+	    echo "you are eligible for vote";
+else
+        echo " you are younger ! !";
+fi 
+
+
+===========
+if elif else
+===========
+=> checking for the more than one condition we use if-elif-else .
+
+Syntax :
+
+if   [ condition1 ] 
+then 
+        echo statmt
+
+elif   [ condition2 ]
+then
+       echo stmt
+else
+       echo stmt
+
+----------------------
+Sample program   : read & choose the color from red blue and green 
+------------------------
+
+#!/bin/bash
+
+echo "choose the color from red , blue , green"
+
+read color
+
+if [ $color == red ]
+then
+        echo " you are cheerful"
+elif [ $color == blue ]
+then 
+        echo " you are intelligent "
+else
+       echo " you are great "
+fi
+
+
+
+=============
+Case Statement
+=============
+=> to execute the several conditon with case statement
+
+---------------------
+sample program
+---------------------
+#!/bin/bash
+
+echo "enter number from 1 to 4 "
+read  x
+
+case  $x in
+1) 
+	echo "Good Morning"
+	;;
+2) 
+	echo "Good  Afternoon"
+	;;
+3)
+	echo "Good evening"
+	;;
+4)
+	echo "Good Night"
+	;;
+esac
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+LOOP statements in shell scripting
+===========================
+=> to execute the single command multiple times we can use loops
+
+Syntax:
+---------
+
+for((cond1;cond2;cond3))
+do 
+      echo  statements
+done
+
+Ex:
+
+for((i=1;i<=10;i++))
+do
+echo "$i"
+done
+
+==========
+While Loop
+==========
+there is a condition  in while,and commands are executed  till the condition is valid. once the  condition is false then loop terminates.
+
+----------
+syntax:
+----------
+while [ condition ]
+do 
+     commands 
+done
+
+
+-----------
+example
+-----------
+
+#!/bin/bash
+
+echo "give the i value"
+read i
+while [ $i -ge 0 ]
+do 
+  echo  $i
+  let i--
+done
+
+***note : in for loop we know the limit till where we have to execute. but in while loop we will execute till the condition satisfies.
+
+=> Bash let is a built-in command in Linux systems used for evaluating arithmetic expressions. Unlike other arithmetic evaluation and expansion commands, let is a simple command with its own environment. The let command also allows for arithmetic expansion.
+
+========
+until Loop
+========
+#!/bin/bash
+echo "enter count"
+read count
+i=0
+until [ $i -gt $count ];
+do 
+   echo "hello $i"
+   let i++ 
+done
+
+***Note :  the basic difference between while and until loop is that  : while loop stops when  the condition is false , but , until loop  stops when the condition is true.
+
+
+
+============================================================================================
+Shell Functions
+============
+with the help of functions , overall functionality of a function can be divided into  smaller  or logical parts . which  can be called  to perform their task. it helps us to check our program part by part. we can reuse the function where ever we want.
+
+Syntax:
+=====
+function functionName(){
+	//command  to be executed
+}
+
+
+Example:
+------------
+
+#!/bin/bash
+
+#defining  function
+
+function welcome () {
+      echo "Welcome to programming World";
+}
+
+#calling function
+welcome
+
+
+
+----------------------------------------------
+passing parameters to the function
+-----------------------------------------------
+#!/bin/bash
+
+#define function
+
+function welcome() {
+	echo "Welcome to $1 world";
+}
+
+welcome linux
+welcome java
+welcome devops
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Read two numbers from keyboard print the greater number
+----------------------------------------------------------------------------
+
+program
+=======
+#!/bin/Bash
+
+echo "enter number 1"
+read n1
+echo "enter number 2 which is not equal number 1"
+read n2
+
+if [ $n1 -ge $n2 ]
+then
+    echo "the number $n1 is greater "
+else
+    echo "the number $n2 is greater"
+    
+fi
+
+---------------------------------------------------------------------------------------------
+Write a script which will take filename as input  and print file content
+----------------------------------------------------------------------------------------------
+
+program
+=======
+
+#!/bin/bash
+
+echo "enter the file name "
+read FILE
+cat   $FILE
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q) How to install softwares in Linux ?
+	$ yum  command  is used for RHEL  and amazon Linux
+	$ apt   command  is used for the ubuntu and kali Linux flavours
+
+Q)  Check the version of linux ?
+	$ uname  -v
+
+Q) Check the disk space available ?
+	$ df
+
+Q) How to check the status  of particular  service in Linux ?
+ 	$ sudo systemctl  status <service-name>
+
+Q) How to monitor the Linux OS?
+	$ htop
+
+Q) find the text in the Linux ?
+	$ grep
+
+Q)Command To Check server connectivity  ?
+	$ ping  <server-name/ip>
+
+Q) What is the use of Winscp & putty ?
+	-> putty is acting as SSH Client  for Linux.
+	-> Winscp is  used to transfer data from windows to Linux and viceversa. GUI is  avaiable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================================================
+
+
+AWS  (Amazon Web services)
+========================
+=> Amazon is providing the  IT  recources form 2006.
+=> As amazon is  providing the services  over the web  we are calling  it  as  amazon web services.
+=> Amazon is  cloud provider.
+=> Amazon is having the global infrastruture .
+=> Amazon is used in the 190 + countries. It has the global infrastructure  with regions and Avalibilty zones.
+		Region ===> geographical loaction
+		Avalibilty Zone ====> Data Centre
+
+=> one region have multiple AZ's.
+=> collection of servers and networks is called as DATA  CENTRE
+
+
+=======
+services
+=======
+EC2 : elastic compute Cloud
+S3    : Simple Storage service
+RDS : realational database Management system.
+EBS  : Elastic block Storage
+ELB  : Elastic Load Balancers with auto Scaling
+Elastic Bean Stack :  PaaS
+VPC  : Virtual private Cloud.
+Route53
+Cloud Watch
+Cloud Formation
+Cloud front
+IAM
+SES
+SQS
+SNS
+Light Sail
+AWS Lambads
+AWS Gateways
+Running the Docker containers.
+CI /CD
+ECS
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+EC2
+====
+=> EC2 stands for Elastic compute cloud.
+=> EC2 providing the virtual Machines for AWS Users.
+=> Using EC2 we can  create  any.no of  virtual Machines according to  requirement.
+
+*** Note : AWS  providing  1 year  free subscription  with 750 hrs/ Montly
+=> EC2 provides  scalable computing cloud  in AWS.
+
+***Note :    => if  we use EC2  then we  no need to purchase  physical computers  for our infrastructure .
+	=> one virtual Machine is called as Vm or  one instance.
+
+=> EC2 providing  AMI (Amazon  Machine Image ) => pre-configured Machines.
+
+=> We can customize  instance types  (CPU, Memory , Storage , Network Capacity )
+
+=> EC2 is providing the secured instances with  key-pair. ( public Key && private key )
+
+*** Note : EC2 is regional  based  service.
+
+=> EC2 providing  Security  Groups to manage  incoming and outcoming  traffic  for our instance.  
+
+=> Security group contains  inbound  & outbound rules.
+
+		inbound rules => incoming traffic
+		outbound rules =>  for outgoing traffic
+
+
+============================================================================================
+Launching  EC2  instance
+------------------------------------
+1) Choose AMI (free tier is available)
+
+2) Choose Instance  type (t2.micro)
+
+3)Configure Instance  (deafault 1)
+
+4) Add  Storage  (Default 8)  ==> We can  extra  storage  using EBS.
+
+5) Add  tags (optional)
+
+6) Configure Security group.( to allow  traffic  to access  our  EC2)
+	
+	SSH : 22
+	RDP : 3389
+	HTTP : 80
+	HTTPS : 443
+
+7) Review the instance details
+
+8) Create New  key-pair  and  download it.
+
+9) Convert the  pem  file to PPK  file.
+
+10) Connect  to EC2  using putty.
+
+===================
+Host the static website  : As  a  devops Engineer  we will perform a  deployment  activity in the project.
+===================
+***  This is DEPLOYMENT  Process ***
+
+=> After connecting to ec2-linux
+=> then update the EC2 
+	$  sudo  yum  update  -y
+=> then install the httpd server.
+	$ sudo   yum  install   -y  httpd
+=>Get the info about the httpd server
+	$ yum info httpd
+=>to access a website we have to place the static website in  var/www/html
+	$ cd  var/www/html
+
+=>add content or place the pre prepared website in the above location to accesses through the IP address.
+	$ echo  "welcome to website-1 "  >  index.html
+
+=>to view the content in index.html
+	$ cat  index.html
+
+=> to start the webserver to run  httpd.
+	$ sudo  systemctl  start  httpd
+
+=>check the status of the web server.
+	$ sudo  systemctl   status httpd 
+
+=> Check the network security group that http and port 80 is added for the accessing the web app.
+	=> go to network security and add the new security group.
+	=> give the name for the  security group.
+	=> in inbound rules add the ssh to access the linux instance from remote connection using putty.
+	=>And also add the http for the port 80 to access the web server from brower in inbound rules.
+	=> set the custom  security group that we made.
+
+=> Now from browser we can access the website with the public ip of the instance.
+
+	
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is web server ?
+
+=> web server is used to run web applications.
+=> In EC2 instance  we  will install  web  servers  to run  web applications. 
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+EC2  Service in 1 server
+===================
+1) Our website  is running in one server.
+2) Everybody  sending  request   to  same  server.
+3) Load will increase  on  server.
+4) If Load increases  server  might  get  crash.
+
+
+=>  To Overcome  this  problem we have to reduce  burden  on  the  server.
+
+=>  To  reduce  burden  on  the  server  we  have  to  distribute  the  load .
+
+=>  To  distribute  the load  we  will  use  "Load Balancer "  (ELB).
+
+==================
+Elastic Load Balancer
+==================
+=>We can configure  N instances to Load Balancer.
+=>When we hit the url then the requests are served(distributed)  in Round Robbin methodology.
+
+*** Note : 
+	Any instance is not running or stopped or shut down then Load will be distributed among others.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+EC2  Instance Types
+=================
+
+There are 4 types of Instances are available .
+
+	1) On Demand Instance
+	2) Reserved Instance
+	3) Spot  Instance
+	4) Dedicated  Host
+
+
+On-Demand Instance
+-----------------------------
+=> Fixed  price (Hourly based).  if we used for 10 mins also it will be chared for hour.
+=> Pay for what you have used.
+=> No Commitment. if the instance  is terminated then it cant retrived.
+=>  AWS unable  predict  usage of instances by users.
+
+Reserved Instances
+---------------------------
+=> Long term  Commitment.
+=> prior payment  (Full , Partial)
+=> pre-booking is needed and  agreement for  1 or 3 years
+=> 75%  discount  on hourly prices.
+=> Predictable usage.
+
+
+Spot Instances
+---------------------
+=> Bidding is avaliable.
+=> Auctioning  is way for payment.
+=> Huge capacity for the cheaper price.
+=> Application  start and end times are informed prior of auction.
+
+
+Dedicated Instance
+---------------------------
+=> If a customer need  a dedicated  Physical Machine.
+=> License based   softwares.
+=> dedicated host is much costlier than others.
+
+
+*** Note : AWS  cloud Minimum  billing period is 1hr
+
+
+9 Am <-> 10 am ==> used only 10 mins
+
+11am <-> 12 pm ==> used for 10 mins 
+
+==> Hence in above situation the Aws will consider for 2 hrs not  20 mins.
+
+There are 5 states in EC2 instance:
+	start
+	running 	(Bill)
+	stop	(no Bill)
+	reboot
+	terminate. (Killing) 
+
+====
+EC2
+====
+=> for 1 year AWS account  free.
+=>  Montly we can use 750 hrs.
+=> t2.micro is free
+
+===========
+EC2 families
+===========
+=> There are several  EC2  families.
+	
+	t1
+	t2
+	t3
+	t4g
+	a1
+	c1
+	c3
+	c4
+
+General Instances :  for General purpose
+	t2.nano =  0.5GB  RAM
+	t2.micro=  1 GB
+	t2.small =  2 GB
+	t2.medium = 4 GB
+	t2.large  =  8 GB
+	t2.xlarge =  16 GB	
+Memory Instances : if you need the more memory
+CPU Instances       :  More CPU 's
+Storage Instances  :  More Storages
+Gpu Instances       : Graphics , Heavy Machines.
+	
+
+==================================================================================================
+AMI (Amazon Machine Image)
+==========================
+=> The Entire copy of  the operating  system  is called as  Image.
+=> AWS providing the several Images for us.
+=> Image  means  pre-configured  system  with  OS.
+	(OS, Network , Software & applications)
+=>We can  create  our  own  AMI  also in  AWS.
+=> There are  45  AMI are available.
+
+
+
+
+
+Procedure of Making our own AMI
+=============================
+
+=>Go to EC2 dashboard.
+=> Select  the  EC2  instance.
+=> Go To  Action ->  Image & templates -> create Image -> Give Name for that
+
+=> Go  to Images  section and check the presence of the Image created.
+
+=> Using the  created Image  we can Launch  EC2 Instance.
+=> By default the image  will be  in private scope.
+=>  if  we make image  as  public  , all AWS  users  can  access  our  image  in that region.
+
+
+=> By using Images  we can  save  our time to setup  instances quickly.
+
+=> To  delete  AMI/Image  we  will use "De-Register Image".
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Elastic Block Storage  (EBS)
+==================
+
+=> When  we  create  EC2  instance  with  Linux  OS  we  will  get  8 GB  space.
+=> we  can  store  files  into  EC2  instance  upto  8 GB.
+=> if we terminate the instance  then we loose that  8 GB  data .
+
+To Overcome the above sinerio.
+
+=> In AWS  we  have  EBS   for  storing  the  data permanently.
+=> In  EBS  we  will create  volumes  to store  the  data.
+=> Volumes behave like a raw  data.
+=> We  can attach the volumes to  EC2 Instances.
+
+
+There  are  two  Volumes :
+	=> EBS  Volumes
+	=> Instance  store volume
+
+Instance Store Volume
+===================
+=> No  Persistence Storage.
+=> Temorary volumes.
+=> if we terminate the EC2 instance data will be lost.
+=> Instance  store volumes  are  free. 
+=> the 8GB space that will available at the time of Instance Creation.
+
+=> When we created the  EC2 instance  we get  default  ebs volume  that volume is called as Root volume.
+=> Root volume is mandatory for the EC2 .
+=> We cant remove the Root volume from the EC2.
+=> Root volume is temporary.
+
+
+
+EBS Volumes
+===========
+=>It is addtional storage is attached to Ec2 Instance for permenant storage.
+=> Permanent  Storage
+=> If  u stop the EC2 , there is no  data Loss.
+=> EBS Max  the volume  size  is  16 TB
+=> for free tier we  are  using  30 GB
+
+
+
+EBS Volumes Types
+=================
+
+General pupose  volumes (gp2,gp3)  - SSD ==> (1GB  -  16 TB) => it is default ,  it provides balance  for the both  price & performance.
+
+
+Provisioned  IOPS Volumes (io1 ,io2) - SSD ==>  (4GB - 16 TB)  => Most expensive  of the  volume  types with highest performance  and  well-suited for  task  with heavy Loads.  
+
+
+Throughput  (st1)  - HDD  =>  frequently  accessed  data  with  cheap  price (500GB - 16 TB)
+	                           =>  A  low-cost  volume that  focuses  on optimizing  throughput  and is generally  used  for large  sequential  workloads  dealing  with big  data ware houses. These  volumes cannot be used  as root  volumes  for EC2  instances.
+
+
+Cold  (sc1)  - HDD => Not frequently  accessed  data with  cheap price (500 GB - 16 TB)
+		=>  Least Expensive  of volume  types and specifically  designed  for workloads  which  are accessed  less frequently. These Volumes also  cannot  be used  as root  volumes for EC2 instances.
+
+
+Magnetic (Standard) - HDD  =>  previous generation (1GB  - 1 TB) - old
+		=> Previous  generation  magnetic  volume which cannot  be used  as root  volumes for EC2 instances. 
+
+
+=========
+Procedure
+=========
+=> Go to Volumes in EBS .
+=> Create  Volume
+=> Attach volume to  EC2 instance. 
+
+
+***Note : For the EC2  instance the  Public  I.P  is dynamic .  
+
+
++++++++++++++++++
+Lab Task on EBS
++++++++++++++++++
+1) Create a Ec2 instance  with Amazon  Linux 2 AMI
+2) Create  additional  EBS volume of 10 GB
+3) Attach  EBS  volume of 10GB for storing data.
+4) Connect  to EC2  instance  and verify  volumes (EBS should display).
+5) Create a directory  and mount  EBS  volume  to  created  directory
+6) Store the data  in EBS volume mounted  directory ( create new file)
+7) Detach  EBS volume from EC2  and  stop/terminate EC2 Instance.
+8) Create  new EC2 instance  and attach  previously  created EBS volume.
+9) Connect  new instance with the putty and verfiy the volumes ( EBS volume should display)
+10)  Create  new directory  and mount EBS volume  to created directory.
+11) verify  data which stored previoulsy  in EBS is avialble  or not  (it should present).
+12)  Stop instances and delete the volumes. 
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+List the attached EBS volumes:
+$ lsblk
+
+Check  if  the volume has  any  data  using  the  "sudo  file  -s /dev/xvdf " Command.
+$ sudo  file  -s /dev/xvdf
+
+Format  partition  using  the command  "sudo  mke2fs  -j  /dev/xvdf ".
+$ sudo  mke2fs  -j  /dev/xvdf 
+
+Mounting the disk as "/newdisk"
+--------------------------------------------
+
+Switch to root user
+$ sudo su
+
+Create the directory with  a name  /newdisk
+$ sudo  mkdir  /newdisk
+
+Mount  EBS  Volume  to newdisk  using  the command
+$ sudo  mount  /dev/xvdf    /newdisk/
+
+Check mounts  using df -h
+$ df  -h
+
+Navigate  to  new directory  ( it is available  under root(/))
+$  cd  ../../newdisk
+
+Create  new  file in newdisk  directory
+$ touch  f1.txt
+
+--------------------------------------------------------------------------------------------------------------------
+
+1) Detach  Volume  from  EC2-1  and  stop  EC2  instance.
+
+2) Create  New  EC2  instance.
+
+3) Attach  EBS  additional  volume.
+
+4)  Connect  to  newly  created  EC2  instance  using  putty.
+
+5)  Check  volumes  available  in  EC2  using  (lslbk  command).
+
+6)  Create  directory
+
+	$ mkdir  newdrive
+
+7)  Mount  EBS  volume  to  directory
+	$ sudo su
+	$ mount  /dev/xvdf   newdrive  
+
+8)  verify data  available   in  EBS  volume  came  to  our  directory  or not
+	
+	$ ls   -al  newdrive
+
+--------------------------------------------------------------------------------------------------------------------
+=> In  realtime , Root volume contains  operating System.
+=> we  use EBS  Additional  volumes  to  store our application  &  application  configuration  files.
+
+***Note :
+	Provisioned IOPS (io2)  supports  Multi  Attach  means  we  can  attach  volume  to  multiple  EC2 instances at a time.
+
+
+============================================================================================
+EBS  SNAPSHOTS
+=============
+=> Snapshot  means copy/backup/Xerox.
+
+=> In AWS , snapshots are  used  to  take  backup  of  volumes.
+
+=> volume backup is called   as the snapshot.
+
+=> Every volume  will have its  own snapshot.
+
+=> Snapshot  size is 50 GB.
+
+=> we  will go  for  incremental  backup (only  latest  changes)
+
+=> Snapshot   is a point-in  time copy  of  volume.
+
+=> Snapshots  will be  created  from  the  volume. and  volumes can be  created from  snapshot.
+	
+	EBS Volume -------> EBS  Snapshot ----------->  EBS  volumes
+
+=> We  can't  attach  snapshot  to  EC2  directly.
+
+=> From Snapshot we can  create the volume then we will attach the volume to EC2 instance.
+
+=> When we  Create  Snapshots  they will  be  stored  in AWS  S3.
+
+=>  Snapshots are  regional  specific  (NO  AZ).
+
+=>  Snapshots   can  be  copied  from  one region  to another region in  same  AWS  account.
+
+***Note  :  volumes are  Avalibilty zone specific and snapshots are  region specific.
+
+
+============================================================================================
+Snapshots  Lab  task
+================
+1) Create EC2 instance in  1a  Zone.
+2) Create  EBS  additional  volume(v1) in  1a  zone.
+3)  Create Snapshot(s1)  from  1a  Zone  volume(v2).
+4)  Create  Volume(V2) in 1b zone  from  Snapshot(s1).
+5)  Create EC2  instance in  1b  zone.
+6)  Attach  1b  zone  volume  to  1b  zone EC2 instance.
+7) Delete Volume ,snapshot and instances.
+
+
+
+
+============================================================================================
+
+Security Groups
+=============
+=> Security  Groups  are used  to  configure  Inbound and  outbound  rules  for  EC2 instance.
+
+
+Inbound rule :- it will decide  who  can access  our EC2 instance .
+Outbound rule :-  it will decide  that  what our  instance can  access.
+
+=> By  default   all  inbound  traffic  is  denied  and  outbound  traffic is allowed.
+
+=>  If  we want  to  allow  the  traffic  for  EC2  then  we  have  to  configure  Inbound   rules.
+
+	SSH   ==> Port Range  (22)
+	RDP  ==> Port  Range  (3389)
+	http  ==>  Port  Range  (80)
+	https ==>  port  Range (443)
+=> AWS providing default  Groups.
+
+=>  Based on Our requirement  we  can  create our  Own  security  group  and we  can  attach  to  our  EC2 instance.
+
+
+============================================================================================
+Types  of  Ip's   in  EC2
+=================
+IP - Internet Protocol ( Address  of  Computer)
+
+=> In AWS  there  are  3 types of  IP:
+		1) Private IP
+		2) Public  IP
+		3) Elastic  IP
+
+=>  We are Launching  EC2  instances  in AWS  and  we are connecting  to EC2  instances .  we  need Internet  to connect the instance from  Our Machine  to  EC2  instance.
+
+=> Every  EC2 instance have it  own IP. That is called as  Private IP.
+
+=>  AWS  is  going  to Manage the IP addresses.
+
+=>  We  can't  connect  to  EC2  instance  using  Private  IP. 
+	( it is not possible)
+
+=>  If  we want  to  connect   to  EC2   instance  from outside  then  we need the  public  IP. 
+
+Note : Private  IP  is  Mandatory  for  Every  EC2 instance  . Public  Ip is  optional.
+
+=> Private  IP  is static  where as Public IP  is  Dynamic .
+
+=>  When  we restart  our  EC2  instance  private ip will not  be changed  but public  ip  will  be  charged.
+
+
+If  we want   one  static  IP  to  connect  with  our  EC2   instance  from  outside   then   we  should   go  for  Elastic IP.
+
+-> Elastic  IPs  is  a  static  IPs.
+
+-> Elastic  IP  is  same  as  Public  Ip  but  the  only  different  is  Elastic  IP  is  static   and  Public  IP  is  dynamic.
+
+->  If  we  start  and  stop  the  elastic  IP is   not  going  to  change.
+		(because  it  is  static.)
+
+->   5  elastic  IPs   are  free of   Cost (Soft limit).
+
+***Note :
+	if we  create  the  Elastic IP  then we  should   attach  that   with  the  EC2  instance  otherwise  it  will  be  charged. Dont keep  Elastic  IPs   is  idle. 
+
+====
+Task
+====
+
+=>  Create   Elastic  IP  and  attach  with  EC2  instance.
+
+=>   After  practice  de-attach   elastic  IP  from  EC2  and  then   release  it  to   AWS.
+
+
+
+
+S3 (Simple  Storage  Service)
+=======================
+=> S3  is  used  for  storage purpose.
+
+=> S3  is  object  based  Storage.
+
+=> we can  store  flat  files  in  S3.
+
+=> We can  upload  and download  and  access files  from  S3.
+
+=> We  can't  Execute  S3 files.
+
+=>  we  can't  install  any  S/W  in  S3.
+
+=>  S3  is  providing  the  unlimited  storage.
+
+=>  we can't  attach the  S3  to  EC2 instance.
+
+=>  We  can Access  the  S3  objects   from EC2 instance.
+
+=>  S3  supports  static  web  hosting.
+
+=>  S3  is  serverless.
+
+=>  In  S3  we  will  store  data  in  buckets.
+
+=>  Bucket   is   container.
+
+=>  Bucket  contains  Objects ( obj = file).
+
+=>  Key  is  called  as  name  of  the  Object.
+
+=>  S3   is  global  but  buckets are  regional.
+
+=>  S3  bucket Name  should  be  unique .
+
+***Note : Always  create  the S3 bucket  with   company   name  or  project name.
+
+=> We  can't  Create  one bucket  inside  another bucket.
+
+=>  we  can  create Multiple buckets in  multiple  regions.
+
+=>  Max  we  can  create  100  buckets in  S3  (soft  Limit).
+
+=> By  default  the buckets  are  private , if we required we  can  make it  public.
+
+=> Every bucket  will  have its  own url/ endpoint.
+
+
+**** S3  Buckets  follows  WORM Model ****
+	(Write once  read Many times)
+
+
+=> Amazon S3  is highily  Scalable , highily  Available , Highily  Durable.
+
+	High Available  ==>  24*7  availability
+	Durable	           ==>  Long  Time
+
+=> Using  Amazon  S3  we  can  store  any  amount  of  data  form  anywhere  (No  Limitations).
+
+	-> In  S3  we  will  create  buckets.
+	->  In  buckets  we  will  store  the  data  in  form  of  objects.
+	->  One bucket  contains  any  no.of  objects.
+		
+		Min  Obj  size = 0 bytes
+		Max  Obj  size = 5  TB  
+	-> We  can  have  unlimited  no.of  Objects  of  with  5TB  in  One bucket.
+	->  In Single  put  max  we  can  upload  is  5GB.
+
+=> If  we  want  to  upload  bigger  file  then  we  should  go  for  MPU (Multi  Part Upload).
+	(Break the bigger  file into  smaller Chunks  and  upload  it).
+
+
+============================================================================================
+Versioning
+=========
+=> Version  is  used to differentaite the  old  and new.
+=> By  using  versioning  we can  track  the  changes.
+
+	Ex: java 1.8, java 9, java 10 , java 11 .... java 18.
+
+=> When we  update  any  application/software  then  it  will  be  released  into Market  with  new version number.
+	( we  will  keep  old  version for backup  purpose)
+
+Versioning  is  a means keeping Multiple variants of an object in the same bucket. you can  used versioning to  preserve,retrive and restore. Every version of every object  stored  in your amazon S3 bucket . With versioning ,you can 
+easily  recover  from both  unintended user  actions and application failures.
+
+++++++++++++++++++++   Amazon  S3  buckets have the versioning  Concept  +++++++++++++++++++++++++++++
+
+=> By default  versioning  is  not enabled in  S3, we  have  to  enable  Manually.
+=> Versioning  we  will  enable  at  bucket level  then  it  will  apply  at  objects  available in  that bucket
+=>  Once  we enable versioning  then  we  can't  disable it . We can  only  suspend  that.
+
+	-> Every  time  version  will have  unique ID.
+	->  We  can  download  versioned  files  at  anytime.
+	->   When  we  delete the original  Object,  then  it  will  create the "delete Marker "  on the Latest  version.
+	->  To  restore  our object ,  we have to delete 'delete Marker'  on  the Latest version.
+
+
+Scenerio 1 :
+========
+ Customer-1  wants  to  store  data and  wants  to  access data  very  frequently.
+Customer-2  wants to store  data  and wants  to  access  data  rarely ( Montly once )
+Customer-3  wants  to  store  historical  data.
+
+=> Above  3 customers  having  3  different  requirements. to meet  bussiness  requirements  AWS  provided  storage classes  for  S3.
+
+***Note :  While Uploading  Object  into S3 bucket , Selecting  storage class is  mandatory 
+		(Based on  Storage  class , billing  will  be  generated)
+
+=============
+Storage Classes
+=============
+1) Standard  Frequently  Access (FA)
+2) Standard  Infrequently Access (IA)
+3) Reduced  Redundancy  Storage (RRS)
+4) One Zone  IA
+5) Intelligent  Tiering
+6) Glacier
+
+Standard  Frequently Access (FA)
+======================
+=> Used  for  frequenlty  access data
+=>  This  is  default  storage  class.
+=>  It  is  Used  for Regular purpose.
+	(Websites , Photos,  audios , videos ...etc)
+=> No  Retrieval Charges
+	Avalibility = 99.99%
+	Durabilty = 11  9's
+
+Standard  InFrequently  Access (IA)
+========================
+=> Used  for  in-frequently  data  access.
+=> Cheaper than  FA.
+=> Retrieval  Charges  apply
+	Avalability = 99.99%
+	Durability = 11 9's
+
+Min obj  Size = 128 KB
+Min obj Duration =  30 days
+
+Reduced Redundancy  Storage  RRS
+===========================
+=>  Frequently  access but not  Critical
+=>  No  retrival  Charges
+=> AWS  don't recommend this 
+=> Cheaper then  others
+
+	Availiablity = 99.99%
+	Durability  = 99.99% 
+
+
+One  Zone  1A
+===========
+=> Frequent  Access but  not Critical
+=> Retrivial  Charges  apply
+	
+	Availiablity = 99.99%
+	Durability =  11  9's
+Min   obj size= 128 KB
+Min  Duration = 30 days.
+
+
+Intelligent Tiering
+===============
+=> Unknown  access  pattern
+=> Based on  access it will  move to FA  to IA
+
+	Availability = 99.99%
+	Durability = 11  9's
+
+Glacier
+======
+=> Infrequently  access of data.
+=>  Archiving purpose.
+
+***Note : We  can  move the object  from one  storage  class to  another  Storage class  using  Life Cycle Management Concept.
+
+**Replication : - process of  shifting of object in storage class from one position to another position.
+
+There  are two types of data storage  repilication.
+1) Same Region Repilication (SRR) :-
+				moving the object in storage  class in same region.
+			Ex:- lets consider object shifting  in mumbai region ap-1a  to  ap-1b .
+
+2) Cross Region  Repilication (CRR) :-
+				Moving the object in Storage class in between two different regions.
+
+			Ex: The object  is shifted from mumbai region to texas  region.
+
+=> We need  to  create CRR  rules  for CRR.
+=> The movement  we  create the CRR  rules  from  the  CRR  repilication  will happen.
+	(It won't apply  for existing  objects)
+
+=>  Versioning is mandatory  for CRR.
+
+
+============================================================================================
+Encryption
+=========
+=> Encryption  is  used to Secure our data.
+=> Encryption means converting the  data into  readable  format   to  un-readable format.
+=> Encryption is  done  in two ways.
+	
+	In-Transit  :  Encryption  while  data is  moving/flowing (HTTPS)
+	Data  at Rest : Encryption  for existing  data.
+
+=> Amazon  S3 is  having the 3 types of Encryption :
+		
+		1) Server  Side  Encryption ( AWS  is  responsible  for this)
+		2) Client  side  Encryption ( Client is responsible  for this )
+		3) In-transit  Encryption ( While  data   is  moving )
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+=> When we  upload  any  object  into  S3  bucket  then  new  url/endpoint  will be  generated  for that  bucket.
+
+		Ex:  https://bucketname.domainname.objectname
+
+=> We  can  Configure  'Pre-signed-URL'   for objects  in  S3. Pre-signed-URL  used  for limited  Access (URL  is  valid  for Limited time)
+
+
+===========================================
+S3 Transfer  Acceleration (S3TA)
+===========================
+
+Scenrio
+======
+=> if  we want to shift  the data  from one region  to another then there  is  need of internet. Our network speed is very less and lots of data usage will takes place hence it will cost us more. If the data is petabyte then then time taken for transfer of  data  is  also  more. Hence  then  AWS  introduced  a  concept  called  Transfer Acceleration. 
+
+Transfer  Acceleration  is  defined as  using  the  internal  network  for  transfer  of  data  from one  region  to  another  region  without  using  cliens/ customer  network  and  data . 
+
+-> Transfer Acceleration  is  super  fast over  long  distances.
+->  Hence  it  is highly  reliable .
+->  It  will  reduce  the  internet  routing.
+-> Shorten the  distance  to  S3.
+-> Maximum Bandwidth  utilization.
+
+UseCase :-
+=> Mobile & Webapp upload and download time is reduced and speed incresed due to data  is available in same region.
+=> Distributed  office  tranfers.
+=> Data Exchange  with  trusted  partners.
+
+ 
+
+
+
+
+
+============================================================================================
+Static Website Hosting
+==================
+1) Create  a bucket  in  S3 (bucket name : xyz.org)
+	- Enter the unique name  for bucket.
+	- Uncheck  block public Access.
+2) Go to bucket -> Go to Permission  -> Edit Policy and configure below policy  for Bucket.
+
+{
+	"Version" : "24-07-2023",
+	"Statement : [
+	{
+		"Sid" : "PublicReadGetObject",
+		"Effect" : "Allow",
+		"Principal" : "*",
+		"Action" :[
+			"s3:GetObject"
+			],
+		"Resource" : [
+			"arn:aws:s3:::xyz.org/*"
+			]
+	}
+		]
+}
+
+3)Go  to Objects  -> Upload  static  Website  files (Make them public Access)
+
+index.html for Main content
+error.html  for  Wrong  URL
+assets ( contains images, styles,gif ...etc)
+
+4) Go to  bucket  properties  and  choose 'Static  Web Hosting' option.
+		
+		-> Make it  as enabled
+		-> Hosting Type as  "static Website"
+		-> Configure  index document  as  index.html
+		-> Configure  error document  as  error.html
+		
+5) It  will display URL, access that URL then our static  website  will be displayed. 
+
+
+============================================================================================
+Route  53
+========
+=> Route  53  service is  used  to  map  application  domain  name  to  server  IP.
+=> Route 53  is  a  global  service .
+=> We  will  provide  Domain  Names  for  end  users.
+=> When  user  access  domain  name  in  browser  then  Route 53  will route  that  request   to  server  IP  where  the  app  is running.
+
+=> This  process  is  called  as Domain Name  Service  Mapping.
+
+
+***Note :-
+	To  map  DNS  we  have  to  purchase  Domain first.
+		(In  AWS,  domain  charges  are depends  on  your  bussiness)
+
+			.in
+			.com
+			.info
+			.org
+			.edu   ...etc
+
+***Note :
+	Minimum  domain  cost  in  AWS  is  $12  per  year  .com Extension
+	we  can register  the  domains  minimum  1 year  and  max 10 years.
+
+
+===============================
+Procedure  to  configure  DNS  mapping
+===============================
+1)  Register  domain  using  Route 53  "Register Domain " option.
+2)  Goto  billing  dashboard  and  pay  bill  amount .
+3)  Create  Hosted  Zone  with  our domain  name ( ex : xyz.org)
+
+
+
+============================================================================================
+Amazon RDS (Relational  database Management  System)
+========== 
+
+
+=> When users  are  accessing  our  application  we should  store  users  data  & user activites.
+=>  To  store  the  data we  uses  the  database.
+	(End user  can't  see the  database of  the application.)
+=> For every application  database is required to store data and  retrive the data .
+
+Generally  there are two  types of   databases.
+
+	1) Relational  Databases (Oracle DB, Mysql, PostgreSQL ...etc)
+	2) No-SQL  databases  ( Mongo DB, Couchbase , HBase , Casandra , Dynamo DB ...etc).
+			
+
+
+=> Relational  databases  are  used  to  represent  Structured  data   where the  data  having  clear  boundaries. 
+
+=> In relational  databases  data  are stored in form  of  tables   ,Which have the  rows and  columns.
+
+
+Earlier   companies  used  to  purchase  databases.
+
+1) Purchase  DB  License
+2)  Setup  machine  to  install  db  server.
+3)  setup  db  server
+4)  setup  the  network
+5)  setup  power
+6)  setup  AC
+7)  Setup  Security  for  DB  server Machine
+8)  Setup  Load  balancer
+9)  setup  data backups  for  db  ........ etc
+
+
+*** If  we go for the Amazon RDS  service then  Amazon  will  take  about  above  mentioned factors .
+	In Amazon RDS we can create a database and use it. 
+
+
+How  to Create a Database in Amazon RDS
+
+=> Login into AWS account. 
+
+=> Go to RDS  service.
+
+=> Choose 'create database '  option
+
+=> Select  'Standard creation'
+
+=> Select 'Engine type' as  MYSQL
+
+=> Select  template  as 'Free tier '.
+
+=> Give DB  instance Indentifier  name  as "xyz".
+**Note :- default  username is "admin"
+
+=> Enter password  same as confirm password
+**Note : Note down username and password.
+
+=> Select  'public Access' as  YES.
+
+=>Under 'Additional configuration ' , Enter  database name  as "xyz"
+
+=> Then click on Create database.
+
+*** Note :-  Once  DB  is  Lauched  it  will  generate  Endpoint  for  Our  Db  to  connect.
+	  DB  end point  means the  URL  to  connect  the  database.
+
+
+
+To Connect  with  Database  we need below details 
+=======================================
+1) DB endpoint (DB URL)
+2) DB  port no ( for mysql default port 3306)
+3) DB  username ( default  admin)
+4) DB  password
+
+
+Using  above details,  we can to connect  the database for  DB operations.
+
+
+
+
+Connecting Amazon RDS(MYSQL)  using  AWS  instance.
+---------------------------------------------------------------------------
+-> Lauch EC2  instance (Ubuntu OS)
+-> Connect  EC2  instance  using  Putty
+-> Execute the  below  commands.
+$  sudo  apt-get  update
+$  sudo  apt-get  install  mysql-client
+$  mysql  -h  <end-point>  -u  <username>  -p ( Click  enter and  give password )
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Note :-  if  you  are not  able  to  connect  then   check the  port number 3306  port is open  or not in security  group . If  it is not open  then  enable the port 3306  in security  group. 
+
+( In  database  -> Go to  connectivity && security group    ->    select VPC  Security  group    ->     Edit the  inbound  rule   ->
+select ( ALL TCP)  ->   Add  port range   as  (0- 65535 )  -> save rules
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-> Once  connected  to database  we can  see list  of  databases  available.
+$  show  databases;
+->  Select  the  database  to  use
+$ use  <databasename>
+-> Display  tables  in database.
+$ show tables;
+->  Once  database   is  selected  ,then  we  create  table , insert  data  and  retrive  the  data.
+
+
+============================================================================================
+NoSQL
+=====
+=> NoSQL  is  defined  as not only  structured  data.
+
+=> NoSQL  databases  are highly  scalable and   flexible database  mangement  systems , Which  allow  you  to store  and procesess unstructured  as  well  as  semi-structured   data  which  is  not  possible  through  the  RDBMS  tools.
+
+=> NoSQL  database  doesnot  require any  fixed Schema.
+
+=> Motivations  for  this  approach  include  simplicity  of   design,  horizontal  scaling  ,  and  finer  control  over availability.
+
+Types in NoSQL  databases :-
+
+1) Document  database
+2) Key- Value  database
+3) Column family
+4)  Graph  database
+
+Examples :   Mongo  DB, Couch Base , Casandra , Amazon Dynomo DB , Redis ...etc
+
+============================================================================================
+Amazon Dynamo  DB
+=================
+
+=> Amazon  Dynamo DB  is  a fully  managed  proprietary  NoSQL  database  service,  that  supports  key-value  and document  data  structures.
+
+=> Dynamo DB  lets  you  offload  the  adminstrative  burdens  of  operating  and  scaling   a  distributed  database   so  that  you  don't  have  to  worry  about   harware  provisioning   , setup   and   configuration  ,  replication  , software   patching   or  cluster  scaling.
+
+=>  Dynamo  DB  also  offers  encryption  at  rest  ,  Which  elminates the  operational   burden   and   complexity  involved   in   protecting  sensitive   data .   
+
+
+Advantages  of  Dynamo DB
+=====================
+
+=>  On-demand  Capacity  Mode
+=> Built-in  support  for  ACID  transactions
+=>  On-demand  backup
+=>  Point-in-time   recovery
+=>  Encryption  at   rest
+
+
+
+============================================================================================
+Elastic  Bean  Stalk
+===============
+
+Scenerio
+=======
+
+How  to  deploy  web  app  in   cloud ?
+
+=> Take  a  application  code as  packaged  file ( war or  jar)
+=> Setup  EC2  instances
+=> Setup  Web servers  in  EC2  instances
+=> Deploy  the  application  in  Web  servers
+=> Configure  the  security  groups
+=> Setup  Load balancer for  servers
+=> Create  Auto Scaling  Group
+
+
+What  is  Elastic BeanStalk ?
+------------------------------------
+
+=> Elastic  BeanStalk  is  a platform   with in  AWS  that  is  used  for  deploying  and  Scaling  the  web  applications.
+
+=>  In  Simple  terms  it  is  defined  as  PaaS( platform  as   a  Service)  , takes  application  code  and  deploys  it  while 
+	provisioning   the  supporting   architecture   and   compute  the  resources   required  for  you  code to run.
+
+=>  Elastic  BeanStalk  also  fully  manages  the  patching  Security  updates  for those  provisioned   resources.
+ 
+
+
+
+Why Elastic Bean Stalk ?
+--------------------------------
+=> There  are  many  PaaS  solutions  in  cloud  computing  space  including  RedHat  OpenShift ,  Google  App Engine , Scalingo ,  Python  Anywhere ,  Azure  app Service , However  AWS Elastic  BeanStalk  remains  one  of  the  Leading  PaaS Choices among  app developers.
+
+=> There is  no  Extra charge  to  use  Elastic  BeanStalk  to  deploy  your  applications ,  you  are  only  charged  for the  resources  that are  created   to  support  your  application.
+
+=> AWS  Elastic Bean Stalk  allows  you  to quickly  deploy  applications   and  services  without  having to  worry  about  
+configuring  underlying  resources , services  and  operating  systems  or  Web servers .
+
+=> Elastic Bean Stalk takes  care of  the  hosting  infrastructure  ,  Coding  Language   interpreter , Operating System , Security  https  service  and  application  Layer .  All  you  need to wory about  writing  your  code.
+
+
+
+Elastic  Bean Stalk  Supported  platforms
+-----------------------------------------------------
+Ruby
+Python 
+PHP
+Go
+Node.js
+JAVA
+.NET on windows Server IIS
+.NET Core  on Linux
+Packer Builder
+Glassfish
+Docker 
+Tomcat
+
+
+Benefits  of  AWS  Bean Stalk
+-------------------------------------
+=> Fast  and  Simple
+=> Developer  Productivity
+=> Scaling  the  Demand
+=> Control Over   tools
+
+
+Elastic  Bean Stalk Components
+------------------------------------------
+Application
+Application  Versions
+Environments
+Environemnt  Tiers
+	web  Server  Environment
+	Worker  Environment
+Environment  Health
+     
+
+
+What  is  Application ?
+
+=> Typically  when we  create an  application ,  you  will  place  all the related  assests  like  code ,  resource  configuration  templates ,  code  versions  and  required  files in  a  folder.
+=> An Elastic  Bean Stalk  is  a similar  concept , it  is  the  entity  that holds  all  the  related  files , platform  resources  and  configuration  inforamation  to  support  the  application  when  we  deploy  your  application  via Elastic Bean stalk.
+=> When you  create  and  deploy  a  new  application  or  version , the application  name  will appear  in   the  elastic  Bean Stalk.
+
+
+
+
+What is Application Versions ?
+
+=>   When  you  make  changes  to  application  you can  deploy  the  updated  application  via  elastic  bean Stalk . The  application  version  relates  to  a  specific  labeled  iteration  of  deployable  code   for  your  web  application .
+
+=> With in elastic  bean Stalk , the  application  version is  a link to  S3  Object  that  contains  your  deployable  ZIP  or  JAVA  WAR file
+
+=> The named  version will  appear  as  a new  application  should you  choose  to  deploy it into  a  different Environment  rather than  deploying  from  with  in  an  existing  application.
+
+
+
+
+
+
+What is  Environements ?
+
+=> When you  deploy your  application  with Elastic  beanStalk ,  an  environement  is created  to house  the  version  of  the  application  you are  deploying . Then Environment  hosts  the required EC2  instances , Storage , Load balancer, Auto Scaling groups  or  anything  else  required  by  this  version  of  the  application .
+
+=> A single environment can  only  run  one version  of  your  application . You  can  deploy  your new  version  over the  top of  an  existing  application  Environment , Like  say  production , however  you  also  have  the  flexibilty  to  install  to alternative  environments  like  development ,  staging  or  testing Environment
+
+=> Each Environment  will have  a unique  URL to  access   the  running  application.
+
+
+
+
+What  is  Environment Tiers ?
+
+=> There are two  tiers  are instantiated  when you  deploy  an application  via  elastic Bean Stalk.
+
+=> The Web Server Environment  tier  is  the  front  facing  segment  that  responds  to  http  requests  from  users  accessing  the application  URL.
+
+=> A Working Environment  tier  is  a background  service  that  processes  requests  delegated  by  the  web server  tier 
+and  can  also  run  workloads  processing  background  tasks . You  can  write  the  code  and  deploy that  code  to wrokers  environment  instead  of  the  main  web  server  application.
+
+
+
+
+What  Environment  Health ?
+
+=> Elastic  Bean Stalk  Monitors  your  web  server  application  and  worker  environments  and  performs  health  checks  on  how  the  application  is  running.
+
+The  health  of  an  Environment  is  reported  using  color  codes  for  instant  visual  recognition  that   all  is  well , or  not .
+
+Grey :-  Lets  you  Know  your  environment  is  being  updated  or  is  still  being  provisioned .
+Green :- Your Environment  is  healthy  and has passed its  latest  health  check.
+Yellow :- Your Environment  is  failed  one or  two recent checks.
+RED :-  Your  Environment is  failed three or  more  recent  health checks.
+
+
+How Elastic  Bean Stalk  works ?
+
+
+	Create Application ==> Upload Version ==>  Launch Environement ==> Manage Enviroment ==> 		==> Update version    ==> Deploy New version ==> Manage  Environment
+
+
+
+
+Elastic Bean Stalk Lab  task-1
++++++++++++++++++++++++
+1)Create   PHP  Environment  and   Run  Sample  PHP  Application
+2) Test PHP  application  is  accessible  or  not  using  URL
+
+
+Elastic  Bean  Stalk  Lab  Task-2
++++++++++++++++++++++++++
+1)  Create  the  java  Environment  and  upload  the  given  jar  file
+2)   Go  to  Environment  ->  Configuration ->  Click  on  Edit  for  Software  then  add   SERVER_PORT  as   5000 in Environment  properties
+3)  Test  JAVA  application   is  accessible  or  not using  URL
+ 
+
+
+
+
+
+
+
+============================================================================================
+IAM :- Identity  Access  Management
+============================
+=> When  we  create  account in  AWS  then  by  default   it  will  be  Root Account .
+=> Root  Accounts will  have  all the  access to  AWS  resources. (FULL  Control)
+=> It is  not  at  all  recomended  to  provide  Root  account  credentials  for  team  members.
+=> Instead  of  Sharing  Root  Account  Credentials  we  can  create  IAM  accounts  for  Team Members.
+=> Using  IAM  we  can  decide who  can  access  what   resources  in  AWS  Cloud.
+
+
+Ex: 
+	Admin Team :  EC2
+	Sales Team  : Billing
+	Release Team : EC2, S3
+
+*** Note : 
+* Always Keep your root  account securely
+* Nothing  will be  charged  for the IAM  accounts creation .  In  AWS  it will  charge only  for the resorces usage only.
+  
+=> To  provide additional  security  for  root  account  we  can setup  MFA ( Multi  factor  Authentication).
+=> Here we use  the google authenticator to get the code  every  time  we login.
+
+=> Making  IAM  there are predefined policy (or) rules(permission) are  available  to add for an user .
+=> We can make the custom policy for specfic  group of  people.
+
+Scenario
+=======
+	We are given a access to fresher that access to only specific bucket .To List the bucket or read from bucket not to write .
+
+Hence we   create the custom policy with JSON or Visual editor.
+
+
+
+
+
+AWS  Cloud Watch
+==============
+
+=> Cloud  watch  is  used to Monitor Performance.
+=> Cloud  watch  can  Monitor  all  AWS  services.
+=> Factors that AWS cloud Watch such as  CPU, Network,Disk,  Status Checks
+=> Zero down  time  is  defined  as  the application  is never stop running (or) not down for atleast one time.
+
+=> Cloud Watch is  all  about  Alarms , Events  and Logs.
+
+=> In Cloud Watch  we  have  2 types  of  Monitoring
+		
+	Basic Monitoring :- every 5 minutes  interval   datapoints ( Free).
+	Detailed Monitoring :- every 1 minute  interval  datapoints ( chargeble ). 
+
+
+Amazon SNS ( Simple Notification  Service)
+==================================
+
+Amazon Simple Notification Service (Amazon SNS) sends notifications two ways, A2A and A2P. A2A provides high-throughput, push-based, many-to-many messaging between distributed systems, microservices, and event-driven serverless applications. These applications include Amazon Simple Queue Service (SQS), Amazon Kinesis Data Firehose, AWS Lambda, and other HTTPS endpoints. A2P functionality lets you send messages to your customers with SMS texts, push notifications, and email. 
+
+=> Using  this  SNS  we can  send  email  notifications  and  mobile  message notification  also.
+
+
+Lab Tasks
++++++++++
+
+1) Create  SNS  topic  with email  notification.
+2)  Create  cloud watch  with  alarm
+	(if  given  threshold (CPU >=10%) reaches  trigger  alarm)
+	(alarm should send  notification using  SNS topic)
+3) Attach the cloud  watch to  EC2  instance  for  Monitoring
+4)  Increase Load  on  the  EC2 instance  using  the  "stress"  software.
+	(Install  stress  s/w  in  EC2  instance and keep Stress  on  EC2)
+5) Observe  the  behaviour  of  Cloud watch /Alarm / SNS
+	( we should get email Notification)
+
+
+To Install Stress  tool on Linux
+----------------------------------------
+$ sudo uptime
+	=> Give the current performance of Instance
+$ sudo  apt-get  install  strees
+$  uptime
+$  sudo  stress  --cpu  8  -v   --timeout  180s
+$  uptime
+
+ 
+============================================================================================
+
+Virtual  Private  Networks
+=====================
+
+=> It  is used to  create the isolated  network  for  our  projects in  AWS  Cloud.
+=> To  work  with  VPC   we  need  to  have  Knowledge on  below  topics.
+
+Subnets
+Internet  Gateway
+Route  Table
+NAT  Gateway
+Security  Groups
+NACL
+=======
+Subnets
+=======
+
+=> Subnet  is nothing  but  partition in VPC.( Sub network  in  Large network.)
+
+=> Subnets  are two types :-
+			1) Private  subnet
+			2) Public   Subnet
+
+=> private  subnet  means there is no internet  connectivity is needed.
+
+=> pubic  subnet  means  internet  connectivity   will  be  required.
+
+***Note :-   we  will  Launch  our  AWS  resources  using  VPC  and  subnets
+
+
+Internet Gateway (IGW)
+===================
+=> Logical  Connection  between  internet  and  Amazon  VPC.
+=> Every  VPC  will  have  IGW.
+=> IGW  is  used to  allows the  incoming  and  outgoing  traffic  for  VPC.
+
+
+Routing  Table
+============
+=> Route  table  is  used  to  configure  Routing  for  Subnets  with  the  VPC.
+=> Every  Subnet   in  VPC  is  connect   with  the  routing   table.
+
+
+NAT  Gateway
+===========
+=>NAT  Gateway  is  used  to restrict  incoming  traffic  and  allow  outgoing  traffic  for  Subnets.
+=> It  supports  only  one-way  traffic .
+
+Security Group
+============
+=>  Security  Group  is  used   to  configure  rules/protocols  to  allow  the  traffic  .
+=>  Security  Group   will not  support  for  DENY.
+
+NACL  
+=====
+=>NACL   is  Known  as  Network  Access  Control  List.(additional security Layer)
+=> NACL  is  used  to  configure  the rules   to deny  the  traffic.
+=> NACL  will  provide  additional  security  for  VPC  at  network  Level.
+
+=======================================================
+** VPC Sizeing
+===========
+=> VPC  Sizing  means  allocating   IP   address   for  our virtual  Cloud.
+
+=> for  exmple  I have taken 100 IPs  in  VPC
+
+	subnet-1 : 1  -  50  IPs
+	subnet-2 :  51 - 100  IPs
+ 
+ => If  i  do  VPC  sizing like  above  then  all  my  IPs  get  completed. If  I get to  new requirement  in future . I dont have  IPs to   Launch   my  resources.
+
+=> To  overcome  this  problem  we dont  allocate  all  IPs   to  subnets
+
+=> we  will  assign  the  few  IPs   to  subnets  and  we  will  Keep  few  IPs   for   the  future  purpose (Reserving).
+
+
+IP  Ranges
+========
+=> IP  ranges  will  be  calculated  in  2  power.
+
+***Note :  I am  using  IPV4  version.
+
+IPV4
+====
+-> It  contains   4 parts ( 4  Octets)
+	EX:  10.0.0.1
+
+-> Every octect contains  there  are  8 bits.
+->  4  Octects  * 8 bits = 32 bits
+=>  if  we  give  IP range   as    /16  =>  2  power  (32 - 16) =>  2  power  16  =>  65536
+=> if  we give IP  range  as  /24 => 2 power (32 - 24) => 2 power 8 => 256
+
+Note : 
+=> It is  recommended   to  create  ips  with  range  as  /24  because  it   will  give  256  ips  for  us.
+
+ 
+============================================================================================
+Creating  VPC  with  subnets ,Route  Tables  and  Internet  GateWay
+======================================================
+
+1) Go to  VPC  dashboard  and  Create  VPC
+	
+	CIDR  Block  : 10.0.0.0/16	(0-65535 IP's)
+
+2) Under  VPC ,Create  subnet-1 in Az 1a
+	
+	CIDR Block : 10.0.0.0/24 	(we will get 251 IP's , remaining 5 IP's  is reserved by AWS)
+
+3)  Under  VPC ,Create  subnet-2 in Az 1b
+	
+	CIDR Block : 10.0.1.0/24 	(we will get 251 IP's , remaining 5 IP's  is reserved by AWS)
+
+4) Create  2 Route Tables
+		
+	Route-Table-1 :  Associate  with  subnet-1
+	Route-Table-2 :  Associate  with  subnet-2
+
+5)  Go to  Route Table ->  Select  Route -> Edit  route -> Add  the  route to allow  all  traffic .
+
+	Destination  :  0.0.0.0/0  &  Target   is  Internet  GateWay 
+Note : Do  this  5 th  step  for both  route  tables
+
+6) Create Internet  gateway.
+
+7) Attach the Internet Gateway  to VPC
+
+8)  Create  EC2  instance-1  using  custom VPC   with  subnet-1a
+	network-> VPC  selection
+	Subnet Selectio  ->  Subnet-1b
+	Auto-Assign-Public-IP -> Enable 
+
+9)  Create  EC2  instance-2  using  custom  VPC  with  subnet-1b
+	network-> VPC  selection
+	Subnet Selectio  ->  Subnet-1b
+	Auto-Assign-Public-IP -> Enable
+
+Note : While  Creating  EC2  instances  'Enable'   Auto  Assign-public-option 
+
+10) Connect  to  EC2  instances  and check  connectivity.
+
+11) After  testing  Stop  EC2  instances 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+AWS  Cloud Formation
+===================
+
+
+Why  the  use  of  cloud formation ?
+
+=> Rebuilding  your  infrastructure  and  applications  when  necessary  can   be  chalenging and  Time  consuming.
+=> Such problems  could be result in  whole lot  of  time being spent  in Managing  your  AWS  resources  instead of developing  your application.
+
+
+
+What is  cloud Formation ?
+
+=>  AWS  Cloud formation provides  users  with  a single  way  to  create  and  manage  a  collection of  AWS  resources 
+by  provisioning  and  updating  them in  an  orderly  and  predictable  way.
+
+Ex:  with  AWS  CloudFormation , Expedia  is  able  to deploy  and  easily  manage  its  entire  frontend  and backend  AWS  resources  into  its  cloud  Environment.
+
+AWS CloudFormation : -
+		AWS  cloud  formation enables  you  to  manage  your  complete  infrastructure  or  AWS  resources throught the  text file .
+
+Note :- Using Stack, AWS  resources  can be  updated or created
+
+=> All the  resources  required by a user  in an  application  can be  deployed  easily using  template.
+=>  Also, you  can  reuse  your  templates  to  replicate  your  infrastructure  in  multiple  environment.
+=> To make templates  reusable , use  the  parameters ,  mappings  and  conditions  section  in  the  template  so  that  you can customize  your  stacks  when  we  create  them.
+
+AWS CloudFormation  Concepts
+------------------------------------------
+1) Template
+2) Stack
+
+Templates :
+->  A template in  AWS  Cloudformation  is  a formatted  text  file  in JSON   or  YAML  Language  that  describes  your  AWS infrastructure.
+->   To  create , view  and  modify  templates  you  can  use  AWS  cloudFormation  Designer or any  text editor tool
+->  Template in AWS CloudFormation have nine objectives :-
+
+	Format  Version :- capabilty of template && latest format date (yyyy-mm-dd)
+	Description :-  describle template  in text String
+	Meta data  :-   provide further information  using JSON or YAML objects
+	Parameters :-  It  helps  in giving  custom  values  to your  template  at  runtime
+	Mappings  :-   It enables  you to map  keys  to  corresponding  named value  that you  specify  in conditional 			parameters
+	Conditions :-  reuse the  templates  by  creating  resources  in  diffrent  context 
+	Transform :-  builds  a  simple  declartive language  for  AWS Cloudformation  and  enables  reuse  of  			template   components
+	Resources :-  declare  the  AWS  resources that  you  want  to  create  and  specify  in  the  stack ,  such  as 			amazon  S3  bucket or  AWS Lambda 
+	Outputs :-  output  section  describes  the  output values  that  you  can import  into  other  stacks  or  the values that  are  returned  when a  user  views  his  own properties.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
