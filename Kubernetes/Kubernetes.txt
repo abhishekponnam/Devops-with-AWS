@@ -1,0 +1,1992 @@
+Kubernetes ( K 8 S)
++++++++++++++++
+
+Official Site
++++++++++
+https://kubernetes.io
+
+
+-> K8s is  Orchestration Engine
+-> K8s  is  Open source software (OSS)
+-> K8s  is  used  to manage  containers of our application
+-> K8s  will take  care of container deployment , scaling ,de-scaling and  containers  load balancing
+-> k8s  is  not replacement for  docker
+-> k8s  is  replacement  for "Docker Swarm"
+->  K8s  developed by google and donated to CNCF  in 2014
+-> CNCF means cloud Native Computing Foundation
+-> K8s  s/w  developed  by  using GO Lang
+-> K8s v1.0 released to market in the year of 2015
+
+
++++++++++++
+K8S  Features
++++++++++++
+1) Automated Scheduling
+2) Self Healing  Capabilites
+3) Automated  Rollouts and Rollbacks
+4) Load Balancing
+5) Service Discovery
+6) Storage Orchestration
+7) Secret and  configuration Management
+
+
+-> K8s  providing advanced Schedular  concept to  launch  Container depends our requirement
+
+->If something goes wrong, Kubernetes will rollback the change for you. Take advantage of a growing ecosystem of deployment solutions.
+
+-> Restarts containers that fail, replaces and reschedules containers when nodes die, kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
+
+-> Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage.
+
+** Note : In Docker Swarm Load Balancing  is  manual process  where as K8s supports auto scaling
+
+No need to modify your application to use an unfamiliar service discovery mechanism. Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods, and can load-balance across them.
+
+-> Deploy and update secrets and application configuration without rebuilding your image and without exposing secrets in your stack configuration. 
+
+
+
+++++++++++++++++++++
+Kubernetes  Architecture
+++++++++++++++++++++
+-> K8s works on cluster Model
+-> inK8S cluster we will have master node(s) and worker nodes
+
+1) Master Node / Control plane
+2) Worker Node
+3) API Server
+4) Scheduler
+5) Controller Manager
+6) ETCD
+
+7) PODS
+8) Containers
+9) Docker
+10) Kubelet
+11) Kube-Proxy
+
+12) Kubectl
+13) UI
+
+-> To communicate with Kubernetes  Cluster we have 2 options
+		
+		1) UI ( user Interface)
+		2) Kubectl ( CLI s/w)
+
+-> Master node manages worker nodes in Cluster . It will assign  tasks to worker nodes  for execution.
+
+-> Worker Nodes will  run the tasks which  are  assigned by Master Node.
+
+++++++++++++++++
+What is  API Server ?
+++++++++++++++++
+-> In K8S  cluster we have  several services/objects
+
+PODS
+ReplicationController
+ReplicationSet
+DeamonSet
+Deployment
+Volumes
+Services
+
+-> All the above K8S services implemented using  GO lang. To use K8s services we no need to Learn Go Lang. To use K8S provided API  server.
+
+
+-> When  we Execute a command API server will interact  with K8S   s/w  and it  will  perform  required  operation.
+
+-> API  server  will acts  as  communication channel  between   Developers/Devops  Engineers  and K8S  components
+
+
+
++++++++++++++
+What  is  ETCD ?  
++++++++++++++
+
+-> It is  a Key-value  pair Data Store in K8s
+->It  acts  as database for  Kubernetes
+	(how many pods , How many nodes , how many container etc ...)
+-> When  we  ask K8S to run our application then  API server will recieve that  request and  it  will store into  ETCD.
+
+
+
++++++++++++++++
+What  is  Scheduler 
++++++++++++++++
+
+-> it  will Schedule PODS for executions which are  un-scheduled based on ETCD
+-> Scheduler will schedule  PODS on the Nodes  with  help of Kubelet
+-> Kubelet  is  a worker Node component
+-> Scheduler will talk  to Kubelet to check the  resources to our own application  
+
+
+++++++++++++++++
+What is Kubelet ?
+++++++++++++++++
+
+-> Kubelet  will act  as Node  Agent
+-> Kubelet  will  ensure that  containers  are  running  healthy in the POD
+-> Kubelet will interact  with runtime  to  create a  container in the POD
+
+Note : Here  we will  use  Docker  Runtime to  create Our  containers
+
++++++++++++++++++
+What  is  POD ?
++++++++++++++++++
+
+-> A POD  is  the smallest Execution unit in K8s.
+-> A POD  encapsulates  one or more applications.
+->  Containers   will be  grouped  as one POD inorder  to  increase the intelligence  of  resources  sharing .
+-> PODS  can  run single container or multiple containers.
+
+
+
++++++++++++++++++++
+What  is  Kube-Proxy ?
++++++++++++++++++++
+
+-> Kube-proxy  acts as network proxy
+-> Kube-proxy will maintain network  rules on PODS
+-> The network  rules  allow  network communication to your PODS  from  inside or  outside  of  our cluster 
+
+++++++++++++++++++++++++
+What  is  Controller  Manager 
+++++++++++++++++++++++++
+
+-> Controller Manager  runs  controllers  in the background
+-> It  is  responsible  to run taks   in K8s  cluster
+-> It  performs  cluster level  operations
+-> We have  several Controllers  in  K8S
+
+NodeController
+ReplicationController
+EndpointController
+DeploymentController
+
+
+++++++++++++++++++++++
+Kubernetes  Cluster  Setup
+++++++++++++++++++++++
+
+-> there are  multiple  ways  to  setup Kubernetes Cluster
+
+		a) Self Managed  K8S Cluster
+		b) Provider  Managed  K8S cluster
+
+-> Self  Managed  Cluster  means  we have  to  setup  the cluster  of  K8S  to  run  our  Applications (Lot  of  Commands)
+
+-> To Create  Self Managed Cluster we have 2 options
+	
+	1) Mini Kube (Single Node K8S  Cluster)
+	2) Kubeadm (Multi Node K8S Cluster)
+
+-> Provider Managed Cluster Means  we  will use  K8S Cluster  which  is  Configured  by someone
+
+EKS : Elastic Kubernetes Service (AWS)
+
+AKS :  Azure Kubernetes Service (Microsoft  Azure)
+
+GKE : Google  Kubernetes  Engine ( Google  Cloud Platform)
+
+IKE : IBM  Kubernetes  Engine ( IBM  Cloud)
+
+
++++++++++++++++++++++++++++
+Kubernetes   Self  Managed  Setup
++++++++++++++++++++++++++++
+=> Take 3 Ubuntu  VMs
+	1- Master Node
+	2- Worker Nodes
+
+	Install  Docker & Kubernetes in Both Master & Worker Nodes
+	Install Kubeadm & kubectl in Master Node
+
++++++++++++++++++++++
+Kubernetes  Cluster Setup
+++++++++++++++++++++++
+
+-> Create  One Security group with  Protocol as  "All Traffic " Port Range as 0-65535
+-> Create 3 Ubuntu Servers using above Created Security group
+
+1  -  Master  Node (t2.medium  instance)
+2  -  Worker Nodes ( t2.micro  instances)
+
+
++++++++++++++++++++++	Master & Slave - Common Commands  Execution Start++++++++++++++++++++++++++
+
+Step-1  : Install Docker 
+
+$ sudo apt-get update
+$ sudo  apt-get install  docker.io
+$ docker --version
+$  sudo usermod  -aG docker $USER
+$  sudo systemctl  start docker
+
+
+Step-2 : Installing Kubernetes
+
+# install Curl
+$ sudo apt install  curl
+
+# Add the GPG Kubernetes Key with the Command :
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+# To add the Xenial Kubernetes repository
+$  sudo  apt-add-repository “deb https://apt.kubernetes.io/ kubernetes-xenial main” 
+
+# installing Kubeadm (Kubernetes Admin)
+$ sudo apt-get  install kubeadm  kubelet  kubectl  kubernetes-cni
+
+# Run the below command to check whether the versions of the components installed are compatible
+$ sudo apt-mark  hold  kubeadm  kubelet  kubectl kubernetes-cni
+
+#Check Kubeadm version
+$ Kubeadm version
+
+# Disable swap  Memory
+$ sudo swapoff  -a
+
+$ sudo systemctl  daemon-reload
+$ sudo systemctl  start kubelet
+$ sudo systemctl  enable kubelet.service
+
++++++++++++++++++++++++++++++++++++++end of Master & Slave Comands ++++++++++++++++++++++++++++++
+
+
+++++++++++++++++++++++++++Only Master Node Commands Execution Start ++++++++++++++++++++++++++++++
+
+Step 3 :- Running and Deploying  Kubernetes
+
+# Installize  Kubernetes  on Master Node
+$  sudo  kudeadm  init
+
+# You  need  to run  the following  as  a normal  user to  start  using  your cluster
+$  mkdir -p $HOME/.kube
+$  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#Check  nodes  connected  to Cluster 
+$  kubectl  get Nodes
+
+#Deploy Pod Network to Cluster 
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
+
+#Get Worker token to add workers  to cluster
+$ kubeadm  token  create  --print-join-command
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	  Add  the  slave Node to  form a cluster by executing  token  in worker  nodes  as root user 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Get nodes
+$ kubectl  get nodes
+
+# Get the  pods running
+$  kubectl  get  pods  --all-namespaces
+
+# To  restart kublet service
+$  sudo  systemctl restart  kubelet.service
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+We  Can  access Master Node from remote Machine using  kubectl
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+-> Launch  a new  EC2 VM
+
+-> Install kubectl  using  below commands
+
+$  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   
+$ chmod  +x  ./kubectl
+
+$ sudo mv  ./kubectl  /usr/local/bin/kubectl
+
+$ kubectl  version
+
+$  mkdir  ~/.kube
+
+Note : Take kube config file  from  master  node  using below command and  copy that
+
+$ cat  ~/.kube/config
+
+# paste master Node kube config file data her
+$  vi   ~/.kube/config
+
+Note :  Take kube  config file  from master and  keep it here
+
+$ kubectl  cluster-info
+
+$ kubectl get nodes
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Kubernetes  Core  Components
++++++++++++++++++++++++++
+
+Kubernetes Resources /Objects/ Workloads
+
+Container
+POD
+Namespaces
+Service
+Deployment
+ReplicationController
+ReplicationSet
+DaemonSets
+PersistentVolumes
+StatefulSets
+Role
+Secret Config Maps
+
+-> We  are using Docker to  create  Containers  for our application
+-> Docker will be used as runtime engine  in Kubernetes cluster
+
+-> K8S  is  used  to manage  our  Docker Containers
+-> K8S   will manage our containers but not  directly ( it  will use  PODS  to manage  containers)
+
+-> POD  is a smallest building block  which we  can deploy in K8S cluster
+->  Containers  will  be wrapped under one unit called  POD (Logical Grouping)
+
+Note : In Docker , Container  is  a smallest  part that we can deploy where as in K8S POD is  smallest part we can deploy
+
+	Note :  to get   clarify on  PODS ,  we need  to  understand  Namespaces first in K8s
+
++++++++++++++++++
+What  is  Namespace ?
++++++++++++++++++
+
+-> Namespace represents  a  cluster  inside another cluster
+-> Kubernetes  components  will be grouped  logically using  namespace
+
+Note :  We can consider namespace  as  package  in java (dao pkg, service pkg, util pkg)
+
+->  we can  have multiple namespaces  in K8s  cluster
+
+
+
+# we  can get all namespaces using  below  command
+$ kubectl  get namespaces  
+	(or)
+$  kubectl get ns
+
+
+Note : When  we  setup   our  K8s  cluster  we  will  get  3  namespaces
+
+1) default : it  will be  used by  default  when we don't specify our namespace
+
+2) kube-system : it contains k8s  control plane pods
+
+3) kube-public  : it is reserved  for K8S  system usage
+
+
+Note : it is not recommended  to run our  PODS  using default namespace. we can create  our  own namespace  to  run   our PODS
+
+
+# create our  own  namespace
+$  kubectl  create  namespace  <namespace-name>
+
+Ex:  
+$ Kubectl  create  namespace  sbi-customer-app
+
+$ Kubectl  create  namespace  sbi-agent-app
+
+$ Kubectl  create  namespace  sbi-report-app
+
+
+-> We will  run  our  POD  using  custom  namespace
+
+# How to get PODS  belongs  to a namespace
+$ kubectl  get  pods  -n  <name-space>
+
+# get  the PODS  of  all namespaces
+$  kubectl  get   pods  --all-namespace
+
+#get  all PODS  from  default namespace
+$  kubectl  get  pods
+
+
+Note :  If  we  delete  a  namespace ,  all the  objects / resources  / components  also gets  deleted
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
++++++++++++++
+What  is  POD ?
++++++++++++++
+
+-> POD is  a smallest  build block that we can execute inside K8s  Cluster.
+-> POD  will  execute in a node
+-> One  node  can execute mutiple PODS
+-> POD  can have one container & more than one container
+-> POD  represents running  process
+->  Container inside  the POD will share a unique network  ip, storage and specifications
+
+
+How to run our application in K8S ?
++++++++++++++++++++++++++++++
+-> To run our docker  image we need  to  create  a  pod then K8S  will execute  that POD
+
+Note : If we  have POD then we  can send request to schedule  that POD  execution.
+
+-> we  can create  POD  in   2 ways
+ 	
+1) Interactive
+-> interactive approach means using  commands we can create a  pod
+	Ex :  kubectl  run --name  javawebapppod  --image= abhishek/javawebapp
+
+
+2) declarative
+-> declarative approach  means using manifest  file (YML) we  can create a POD
+
+apiVersion:
+kind:
+metadata:
+spec: 
+
+
+-> apiVersion  represents  version of  our api like  v1, v2,v3...
+-> Kind represents what is the purpose of the manifest file
+-> metadata represents  data about the (labels)
+-> spec represents  specification ( what you want  to  use for this manifest)
+
+$ vi javawebapppod.yml
+
+---
+apiVersion:
+kind:POD
+metadata:
+         name:javawebapppod
+         labels:
+	app: javawebapp
+spec:
+     containers:
+          -name : javawebappcontainer
+            image : ashokit/javawebapp
+            ports:
+               -containerPort : 8080
+
+...
+
+# get all pods
+$ kubectl  get  pods
+
+#Create POD using  manifest  file
+$ kubectl  apply  -f  javawebapppod.yml
+
+# to  describe the  pod javawebapppod
+$ kubectl  describe  pod  javawebapppod
+
+# Check where  the pod is running
+$ kubectl  get  pods  -o wide
+
+Note : we  can  access the POD  across the cluster using  POD IP.
+
+$ curl pod-ip:8080
+
+Note : we can't  access POD using POD  IP outside of the cluster (this is  default  behaviour)
+
+
+++++++++++++
+POD  Lifecycle
+++++++++++++
+
+-> Make  a  request  to  API server  using manifest file (YML)  to  create a  POD
+-> API  server will  save the POD  info in ETCD
+-> Schedular  find un-scheduled  POD info  and  schedule  that POD  for  execution in NODE
+-> Kubelet  will  see that  POD Execution Schedule and  it will trigger  DOCKER  Runtime
+-> Docker Runtime  will runs that  container inside the POD.
+
+**Note : POD  is ephermeral (lives  for short period  of  time)
+
+-> When POD is  re-created then POD  IP will change
+-> It is not recommended to  access the POD using POD ID
+
+
+-> We  will use  "Kubernetes  Service" component  to  Execute  the PODs
+-> K8S service will make POD  accessible / discoverable  inside the cluster  and outside  the  cluster also
+-> When we  create a  service we will  get  one  Virtual IP ( cluster IP)
+-> Cluster IP will be registered in K8s  DNS with its  name.
+
+
++++++++++++++++++++
+What  is  K8S  service ?
++++++++++++++++++++
+-> Service  is  responsible to make our PODS  discoverable / accessible  inside  and  outside of the cluster
+-> Service will identify  the  POD  label/selector
+-> we have 3 types  of services
+
+1) Cluster IP:
+
+$ vi  javawebappsvc.yml
+
+---
+
+apiVersion: v1
+kind :  Service
+metadata : 
+	name : javawebappsvc
+spec : 
+	type: ClusterIP
+	selector: 
+	                 app: javawebapp
+	ports:
+	-  port : 80
+	     targetPort: 8080
+
+...
+
+
+2) NodePort :
+
+$ vi  javawebappsvc.yml
+
+---
+
+apiVersion: v1
+kind :  Service
+metadata : 
+	name : javawebappsvc
+spec : 
+	type: NodePort
+	selector: 
+	                 app: javawebapp
+	ports:
+	-  port : 80
+	     targetPort: 8080
+
+...
+
+
+3)  Load Balancer 
+
+$  vi  javawebappsvc.yml
+
+---
+
+apiVersion: v1
+kind :  Service
+metadata : 
+	name : javawebappsvc
+spec : 
+	type: NodePort
+	selector: 
+	                 app: javawebapp
+	ports:
+	-  port : 80
+	     targetPort: 8080
+	      nodePort : 32611
+
+...
+
+
+
+# get the k8s services  avialable in cluster
+$  kubectl  get  svc
+
+# to execute  the  service (schedule  service)
+$ kubectl  apply  -f  javawebappsvc.yml
+
+$ kubectl  get svc
+
+** Note : In ClusterIP  one VIRTUAL  IP  will be  assigned  for  our service . Using that  ClusterIP  we  can  access  service  with  in  the  cluster.
+
+-> if  we want  to expose  our service outside  cluster we need to use NodePort  Service
+
+$ vi  javawebappsvc.yml
+
+# custom port 32611
+---
+
+apiVersion: v1
+kind :  Service
+metadata : 
+	name : javawebappsvc
+spec : 
+	type: NodePort
+	selector: 
+	                 app: javawebapp
+	ports:
+	-  port : 80
+	     targetPort: 8080
+	      nodePort : 32611
+
+...
+
+-> For NodePort  service  Kubernetes  will  assign  random port number . we   don't  specify  nodePort  in Manifest  file
+-> We  can  access our service  outside cluster using  any  cluster machine public  ip  with  node  port.
+
+Note : Enable  node  port in  Security  group.
+
+URL  access  to  app : http://node-vm-ip:nodeport/context-path
+
+Q) What  is  the  range  of Node  PORT  in k8s  cluster?
+Ans) 30000 - 32767 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+-> In the above  Scenario  we  have  created  the  POD manually (it  is not  recommended)
+-> If  we  create  the  POD  then K8S  will not  provide high  availability
+
+#lets test  it  by deleting our POD 
+$  kubectl  delete  pod  <pod-name>
+
+Note :  Once  pod  got  delete . K8s not  creating  another pod and  application went  down (not  accessible)
+
+
+->  if  we  want  to  achieve  high availabilty then we should  not  create pods  manually
+
+-> We need to use K8S  components to  create PODS  then  K8S  will   provide  high  availability for  our application
+
+Note : High Availabilty  means always  our  application should be  accessible
+
+
+ReplicationController
+ReplicationSet
+DaemonSet
+Deployment
+StatefulSets
+
+++++++++++++++++++++++++++++
+What  is Replication  Controller ?
+++++++++++++++++++++++++++++
+
+-> it  is one of  the key feature  in K8s
+->It  is responsible  to  manage  POD  lifecycle
+-> It  will make sure given   no.of  POD  replicas  are running  at  any  point  of  time.
+
+Note : If any  POD  got  crashed /deleted/dead  then  replication  controller  will  replace  it.
+
+-> Replication  Controller  is  providing facility  to  create multiple  PODS and  it  will make  sure PODS  always exists to run  our  application.
+-> Using  Replication Controller  we  can achieve  high  Availability
+
+-> Replication  Controller  and PODS  are  associated  with Labels  and  Selectors.    
+
+
+
+# name the yml  file  is  :  rc.yml
+
+
+---
+# pod  manifest
+apiVersion: v1
+kind: ReplicationController
+metadata:
+    name:javawebapprc
+spec:
+   replicas: 1
+   selector : 
+       app:  javawebapp
+   template :
+        metadata:
+              name: javawebapppod
+              labels :
+	app: javawebapp
+         spec:
+              containers:
+                - name : javawebappcontainer
+                   image : abhishek/javawebapp
+                   ports :
+	- containerPort : 8080 
+
+---
+#node-port  service  manifest
+apiVersion: v1
+kind: Service
+metadata:
+    name:javawebappsvc
+spec:
+    type: NodePort
+    selector:
+          app: javawebapp
+    ports:
+         -port:80
+           targetPort : 8080
+
+...
+
+
+# run the above  service file
+$  kubectl   apply   -f    rc.yml
+
+#  check the service that  we  created  are  running or not
+$  kubectl  get  svc
+
+#  check   the  pod  is  created  sucessfully  or  not
+$  kubectl  get  pods
+
+Note : Lets  check the  replication Controller is Working of not
+
+# delete the pod which was  created
+$  kubectl  delete   pod   <pod-name>
+
+# check  immdeiately  the  pods ( its  shows  pods are  creating)
+$  kubectl  get  pods 
+
+Note : after  deletion of pod  immediate  access of  IP(public  ip of EC2  instances from cluster ) it  will  take the  fraction of  secs
+
+-> the pods  creation  takes  place with Replication Controller.
+
+# Make the  replicas  3 (pods) for the service  we created
+$  kubectl   scale  rc   javawebapprc   --replicas   3
+
+# check the  3  pods  are  created or  not
+$  kubectl   get  pods
+
+# To check the Replication Controller delete  a  pod and  check the pod
+$  kubectl  delete   pod   <pod-name>
+
+# get the pods  details
+$  kubectl  get  pods
+
+
+
+
+++++++++++++++++++++
+What  is  ReplicaSet ?
+++++++++++++++++++++
+
+-> It  is  next  generation of  Replication Controller
+-> It  is  also  used  to Manage POD life Cycle
+-> We  can  scale up  and  scale  down  PODS  using Replica  set also
+->  Only  difference  between Repilcation Controller  and Replication set  is 'Selector Support'
+
+-> we  have  2  types  of   selectors
+
+1) Equality  Selector
+
+Ex:
+
+selector :
+      app : javawebapp
+
+2) Set  based  Selector
+
+Ex:
+
+selector :
+    matchExpressions:
+          - key :  app
+             operator : in
+	values:
+	     -javapp
+	     -javaweb	
+	     -javawebapp
+
+
+
+
+# here  file  name  is :  rs.yml
+
+
+---
+# pod  manifest
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name:javawebapprs
+spec:
+   replicas: 1
+   selector : 
+       matchLabels :
+	app:  javawebapp
+   template :
+        metadata:
+              name: javawebapppod
+              labels :
+	app: javawebapp
+         spec:
+              containers:
+                - name : javawebappcontainer
+                   image : abhishek/javawebapp
+                   ports :
+	- containerPort : 8080 
+
+---
+#node-port  service  manifest
+apiVersion: v1
+kind: Service
+metadata:
+    name:javawebappsvc
+spec:
+    type: NodePort
+    selector:
+          app: javawebapp
+    ports:
+         -port:80
+           targetPort : 8080
+
+...	            
+
+
+# Apply  the Service  of ReplicaSet
+$  kubectl   apply  -f   rs.yml
+
+# check the  Services  that  are running in the system
+$  kubectl  get  svc
+
+# Check the Pods  is  created or not
+$  kubectl  get  pods
+
+
+# Scale  the Replicas ( Pods /(containers)) 
+$  kubectl  scale  rs  javawebapprs   --replicas  2
+
+
+*** Note   :  Delete all the Nodes data /pods/services using  below  command
+$ kubectl  delete  all  --all
+
+++++++++++++++++++++
+What   is   Daemon   Set ?
+++++++++++++++++++++
+
+-> A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them. As nodes are removed from the cluster, those Pods are garbage collected. 
+-> Deleting a DaemonSet will clean up the Pods it created.
+
+Some typical uses of a DaemonSet are:
+
+1) running a cluster storage daemon on every node
+2) running a logs collection daemon on every node
+3) running a node monitoring daemon on every node
+ 
+***Note : Replicas  not  applicable  for  DaemonSet
+
+# Delete  all nodes data/pods/services using below command
+$ kubectl  delete  all  --all
+
+# make  a  file name :  ds.yml
+$  vi  ds.yml
+
+
+---
+apiVersion : apps/v1
+kind : DaemonSet
+metadata :
+        name :  logging
+spec:
+        selector :
+               matchLabels :
+	app :  httpd-logging
+         template :
+                  metadata :
+	labels  :
+	      apps : httpd-logging
+                    spec:
+	containers:
+                              -  name : webserver
+	          image :  httpd
+	          ports :
+	                 -  containerPort :  80
+
+...
+
+ 
++++++++++++++++++++++++++++++++++++
+
+Manually POD  Created  (Not  Recommended)
+
+POD Creation  using  ReplicationController
+POD  creation  using   ReplicaSet
+POD  creation  using   DaemonSet
+
+-> In above Concepts  Auto-Scaling feature not Avaialble (Manually  we  need  to scale our pods)
+
+-> There  is  no option to  rollback  our  pods creation.
+-> If there is bug in software ,once service  started it cannot  rollback
+
+=> To overcome  these  problems  we  have  "Deployment" concept.
+++++++++++++++++++++++++++++++++++++
+
+
+
+++++++++++++++++++++++++
+What    is   Deployment ?
+++++++++++++++++++++++++
+
+-> Deployment  is  used  to  tell   Kubernetes  how  to  Create  or  Modify  instance  of the  pods
+-> By  using  Deployment  we  can  roll  out  and  rollback  our  application  deployment. (if  required)
+-> If  there  is  a bug in software  then we can rollback.
+-> We  can   achieve   Auto-Scaling  using  Deployment. 
+ 
+
++++++++++++++++++++
+Deployment  Strategy
++++++++++++++++++++
+
+1)  Recreate :-
+2)  Rolling  Update
+3)  Blue / Green ( Approach)
+
+
+# K8S  deployment manifest file
+
+---
+# Deployment Manifest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+  labels:
+    apps: javawebapp
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: abhishek/javawebapp
+        ports:
+        - containerPort: 8080
+---
+# Service Manifest
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+
+## Note : use VS  code  for intendation.
+
+
+# run  the  service
+$  kubectl  apply  -f  deployment.yml
+
+# get the pods  data
+$  kubectl  get  pods
+
+# get the  service
+$  kubectl  get  svc 
+
+$ kubectl  get  deployment
+
+# if  we  want  to delete the deployment
+$ kubectl  delete  deployment  <deployment-name>
+
+
++++++++++++++
+Recreate :-
++++++++++++++
+The recreate deployment strategy in Kubernetes is an all-or-nothing process that lets you update an application immediately, with some downtime. With this strategy, existing pods from the deployment are terminated and replaced with a new version.
+
+This strategy is the simplest to implement, but it can also be the most disruptive. It is best used for development environments or for applications that can tolerate short periods of downtime.
+
+Here is an example of how to use the recreate deployment strategy in Kubernetes:
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: my-app:latest
+...
+
+In this example, we are creating a Deployment with 3 replicas of the my-app container. The strategy is set to Recreate, which means that when we update the Deployment, all of the existing pods will be terminated and replaced with new pods running the latest version of the my-app container.
+
+The recreate deployment strategy is not the best choice for all applications. If your application has a lot of state that needs to be preserved, or if you cannot tolerate any downtime, then you should use a different deployment strategy, such as rolling update or blue/green deployment.
+
+Here are some of the pros and cons of the recreate deployment strategy:
+
+**Pros:**
+
+* Simple to implement
+* Can be used for development environments
+* Can be used for applications that can tolerate short periods of downtime
+
+**Cons:**
+
+* Can be disruptive
+* Can lead to data loss
+* Not suitable for applications with a lot of state
+* Not suitable for applications that cannot tolerate any downtime
+
+
++++++++++++++
+Rolling  Update
++++++++++++++
+
+A rolling update strategy in Kubernetes is a gradual process that allows you to update your application with minimal downtime. With this strategy, new pods are created with the updated image, and old pods are terminated one at a time.
+
+This strategy is the most common way to update applications in Kubernetes, as it allows you to keep your application running while you are updating it. It is also the best choice for applications that cannot tolerate any downtime.
+
+Here is an example of how to use the rolling update strategy in Kubernetes:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: my-app:latest
+```
+
+In this example, we are creating a Deployment with 3 replicas of the my-app container. The strategy is set to RollingUpdate, which means that when we update the Deployment, new pods will be created with the latest version of the my-app container, and old pods will be terminated one at a time.
+
+The rolling update strategy has a few advantages over the recreate deployment strategy:
+
+* It minimizes downtime.
+* It is more reliable, as it is less likely to lead to data loss.
+* It is more suitable for applications with a lot of state.
+
+However, the rolling update strategy also has a few disadvantages:
+
+* It can be slower than the recreate deployment strategy.
+* It can be more complex to implement.
+* It can be more difficult to troubleshoot.
+
+Overall, the rolling update strategy is the best choice for most applications. It is a reliable and efficient way to update your application with minimal downtime.
+
+Here are some of the parameters that can be configured for the rolling update strategy:
+
+* maxSurge:
+	The maximum number of new pods that can be created during the update.
+* maxUnavailable:
+ 	The maximum number of pods that can be unavailable during the update.
+* minReadySeconds:
+	 The minimum number of seconds that a pod must be running and ready before it is considered available.
+
+These parameters can be used to fine-tune the rolling update process and ensure that your application remains available during the update.
+
+
+
+++++++++++++++++++++++++
+Blue  Green  Approach
+++++++++++++++++++++++++
+Blue-green deployment is a deployment strategy in Kubernetes that allows you to update your application without any downtime. With this strategy, two identical production environments are created: one is called the blue environment, and the other is called the green environment. The blue environment is the current production environment, and the green environment is a clone of the blue environment.
+
+When you want to deploy a new version of your application, you deploy it to the green environment. Once the new version is deployed and tested, you can switch traffic from the blue environment to the green environment. The blue environment is then deprecated.
+
+Blue-green deployment is a good choice for applications that cannot tolerate any downtime. It is also a good choice for applications that have a lot of traffic.
+
+Here are the steps involved in a blue-green deployment in Kubernetes:
+
+1. Create two Deployments: one for the blue environment and one for the green environment.
+2. Deploy the current version of your application to the blue environment.
+3. Deploy the new version of your application to the green environment.
+4. Test the new version of your application in the green environment.
+5. Switch traffic from the blue environment to the green environment.
+6. Deprecate the blue environment.
+
+Here are some of the benefits of using blue-green deployment in Kubernetes:
+
+* Zero downtime: With blue-green deployment, you can update your application without any downtime. This is because the new version of your application is deployed to a separate environment, and traffic is only switched to the new environment once it has been tested and is ready to go live.
+* Reduced risk: Blue-green deployment reduces the risk of deploying a new version of your application to production. This is because the new version of your application is deployed to a separate environment, so if there are any problems with the new version, they will not affect your production environment.
+* Increased traffic capacity: Blue-green deployment can increase the traffic capacity of your application. This is because you can deploy the new version of your application to the green environment while the blue environment is still handling traffic. This allows you to gradually increase the traffic to the new version of your application until it is handling all of the traffic.
+
+Here are some of the drawbacks of using blue-green deployment in Kubernetes:
+
+* It can be more complex to implement than other deployment strategies, such as rolling updates.
+* It requires more resources, such as storage and compute resources.
+* It can be more disruptive to your users, as they may experience a brief period of downtime while traffic is switched from the blue environment to the green environment.
+
+Overall, blue-green deployment is a good choice for applications that cannot tolerate any downtime and have a lot of traffic. However, it is important to weigh the benefits and drawbacks of blue-green deployment before deciding if it is the right deployment strategy for your application.
+
+
+# blue.yml
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-boot-demo-deployment-blue
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: k8s-boot-demo
+      version: v1
+      color: blue
+  template:
+    metadata:
+      labels:
+        app: k8s-boot-demo
+        version: v1
+        color: blue
+    spec:
+      containers:
+        - name: k8-boot-demo
+          image: abhishek/javawebapp
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
+$ kubectl   apply   -f   blue.yml
+
+$ kubectl    get  pods 
+++++++++++++++++++++++++++++++++++++++++++++++++
+# service-live.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-boot-demo-service
+spec:
+  type: NodePort
+  selector:
+    app: k8s-boot-demo
+    version: v1
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30090
+
+
+$  kubectl  apply   -f   service-live.yml
+
+$  kubectl  get  svc  
+
+$  kubectl  get  pods
+
+$ kubectl  get  pods  -o  wide
+
+***Note : With  pods  without service  we are unable  to access the site 
+
+
+$ vi   green.yml
+++++++++++++++++++++++++++++++++++++++++++++++++
+# green.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-boot-demo-deployment-green
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: k8s-boot-demo
+      version: v2
+      color: green
+  template:
+    metadata:
+      labels:
+        app: k8s-boot-demo
+        version: v2
+        color: green
+    spec:
+      containers:
+        - name: k8-boot-demo
+          image: abhishek/javawebapp
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+   
+...
+
+$ kubectl  apply  -f  green.yml
+
+$  kubectl  get pods 
+
+
+$  vi  service-prepod.yml
++++++++++++++++++
+# service yml  for gree
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-boot-demo-service-preprod
+spec:
+  type: NodePort
+  selector:
+    app: k8s-boot-demo
+    version: v2
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30092
+
+...
+
+$ kubectl  apply  -f  service-preprod.yml
+
+$ kubectl  get  svc 
+
+
+**** Note :  by changing  the  selector  from  v1  to  v2  to change the users flow  into  updated  pods  in service-live.yml
+
+Diverting the traffic from old site  to new  site
+
+# service-live.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-boot-demo-service
+spec:
+  type: NodePort
+  selector:
+    app: k8s-boot-demo
+    version: v2
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30090
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+AutoScaling
++++++++++
+
+-> It is the  process  of  increasing / decreasing  infrastructure based  on  demand .
+
+AutoScaling  can  be  done  in 2  ways
+
+1) Horizontal  Scaling : increasing  number  of  instances/Systems
+
+2) Vertical  Scaling : increasing  capacity of  single system
+
+Note : For  production  we  will use Horizontal scaling
+
+HPA : Horizontal  POD  AutoScaling
+VPA : Vertical  POD  AutoScaling ( we  don't  use)
+
+
+HPA : Horizontal  POD Autoscaler  Which  will scale  up/down  number  of  pod  replicas  of  deployment , ReplicaSet  or Replication Controller  dynamically  based  on the  observed  Metrics ( CPU or Memory Utilization).
+
+-> HPA  will interact  with Metric  Server  to  identify  CPU/Memory  utilization  of  POD.
+
+
+# get the  node  metrics
+$ kubectl  top nodes
+
+# to get pod  metrics
+$  kubectl  top  pods
+
+Note : By  default  metrics service  is  not  available
+
+-> Metrics  server is  an application that collect  metrics  from objects  such as  pods , nodes according  to  the state  of  CPU, RAM  and  keeps them  in  time.
+
+-> Metrics-Server  can  be  installed  in the  system  as  a addon . You can take and install  it  directly from  the  repo.
+
+1) clone  git  repo
+$  git  clone  https://github.com/ashokitschool/k8s_metrics_server.git
+
+2) check the  cloned  repo
+$  cd  k8s_metrics_server
+$  ls  deploy/1.8+/
+
+3)  apply manifest files from  manifest-server directory
+$  kubectl  apply  -f  deploy/1.8+/
+
+
+Note : it  will  create service  account , role , role binding  all  the stuff
+
+
+# we can see  metric server running  in Kube-system ns
+$  kubectl  get  all  -n  kube-system
+
+# check the top nodes  using  metric server
+$  kubectl  top  nodes 
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Easy Installation  of metric  server
++++++++++++++++++++++++++++
+
+$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yamla
+
+
+
+Note :  as of  now there is no  load on  application
+
+-> Now we  need to simulate  the  load
+->  we can  simulate  load  using busybox
+
+
+$  kubectl   run  -it  --rm  loadgenerator  --image=busybox
+
+Note : with  this  command  we  are  inside the  pod
+
+$  wget -q  -O- http://hpaclusterservice
+
+note : we  got  response
+
+$ while  true ; do  we get  -q  -O- http://hpaclusterservice; done
+
+Note : connect  to  control-plane  and  check pods
+
+$ kubectl  top  pods
+
+
++++++++++++++
+AWS - EKS
++++++++++++++
+-> EKS  stands  for Elastic Kubernetes  Service
+-> EKS is  a  fully  managed  K8S  service
+-> EKS  is  the best  place  to run k8s  applications  because  of  its security , reliability  and  scalability.
+-> EKS  can be  integrated  with  other AWS  services  such as  ELB, CloudWatch , AutoScaling , IAM and  VPC
+-> EKS makes  it easy to  run  K8s on AWS without needing to install , operate and maintain your  own K8S control  plane.
+-> Amazon EKS  runs the K8s  control  Plane across three  availability  zones  in order  to  ensure  high availability  and  it  automatically  detects  and  replaces unhealthy  masters.
+-> AWS  will  have   complete  control  over Control Plane. We  don't  have  control  on  Control Plane.
+->  We need to  create Worker Nodes and attach to  control Plane.
+
+Note : We  will create Worker Nodes Group using ASG Group.
+
+-> Control Plane Charges + Worker Node Charges (Based on Instance Type & No . of Instances)
+
+Note : $ 0.10 per hour
+
+Pre-Requisites
+---------------------
+=> AWS  account  with  admin  priviliges
+=> Instance to manage/access  EKS cluster using  kubectl
+=> AWS  CLI  access to use Kubectl  utility
+
+
+#############################
+Steps  to  Create  EKS Cluster  in AWS
+#############################
+
+Step-1)  Create IAM  role 
+	-> Entity Type : AWS Service
+	->  Select  Usecase  as 'EKS' -> EKS Cluster
+	-> Role Name : EKSClusterRole  ( you  can give  any name  for the role)
+ 
+	
+Step-2)  Create VPC using  Cloud Formation using  S3 URL
+
+URL : https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
+
+step-3) Create  EKS Cluster using  Created  VPC  and IAM role we created
+
+	-> Cluster endpoint  access : Public & Private
+
+Step-4)  Create  RedHat  EC2  instance ( k8_client_machine)
+	-> connect to  k8s_client_machine  using  Mobaxterm
+
+#########   install kubectl  below commands   ###################
+
+$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+$ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+$  kubectl  version  --client
+ 
+#############  Install  AWS  CLI  in  k8s_client_machine  below commands  #########
+
+$ curl  "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ sudo  yum install  unzip
+$ unzip awscliv2.zip
+$ sudo  ./aws/install
+
+
+################ Configure  AWS  Cli  with  Credentials  ###################
+
+# Acess the KEY ID  and Secret Access Key from  ROOT ACCOUNT 
+
+$  aws  configure 
+# configure the details  here given Key id  and screct access key  and  OUTPUT  Format is  Table
+
+Note : We can  use root  user accesskey  and  secret  key
+
+$  aws  eks  list-clusters
+
+$  ls  ~/.
+
+# update Kubeconfig   file  in  remote  machine  from  cluster  using  below  command
+$  aws  eks  update-kubeconfig  --name  <cluster-name>  --region  ap-south-1
+
+
+Step-5)  Create  IAM  role  for  EKS  worker  nodes (usecase  as  EC2)  with  below  policies
+
+	a) AmazonEKSWorkerNodePolicy
+	b) AmazonEKS_CNI_Policy
+	c) AmazonEC2ContainerRegistryReadOnly
+
+Step-6)  Create  Worker Node  Group
+
+ -> Go to  Cluster  ->  Compute -> Node Group
+-> Select the  Role we  have  created  for  WorkerNodes
+-> Use  t2.large
+-> Min 2  and  Max 5
+
+Step-7)  Once  Node Group  added  then  check nodes  in  K8s_client_machine
+
+$ kubectl  get  nodes
+
+Setp-8) Create  POD and  Expose the POD using NodePort Service
+Note:  Enable NODE PORT  in  security  Group to  access  that in  our  browser
+
+
+# make the javawebapppod.yml from above notes
+$  kubectl  apply  -f  javawebapppod.yml
+
+# to access the  webapp from outside make service.yml  from above notes
+$  kubectl  apply -f  javawebappsvc.yml
+
+$ kubectl  get  svc
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Ingress
+======
+-> Ingress  is  used  to  map external URLs  to  K8 cluster  services
+-> PODS  are  accessible  with in cluster
+-> To Expose  PODS  outside the  cluster  we  are  using  service  Concept
+-> We have  3  types  of  services  in  K8s
+	1) Cluster IP
+	2) Node Port
+	3) Load Balancer
+
++++++++++++++
+Load balancer 
++++++++++++++
+
+#javawebapp.yml
+
+
+---
+# pod  manifest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name:javawebappdeployment
+spec:
+   replicas: 1
+   selector : 
+       matchLabels :
+	app:  javawebapp
+   template :
+        metadata:
+              name: javawebapppod
+              labels :
+	app: javawebapp
+         spec:
+              containers:
+                - name : javawebappcontainer
+                   image : abhishek/javawebapp
+                   ports :
+	- containerPort : 8080 
+
+---
+#node-port  service  manifest
+apiVersion: v1
+kind: Service
+metadata:
+    name:javawebappsvc
+spec:
+    type: LoadBalancer
+    selector:
+          app: javawebapp
+    ports:
+         -port:80
+           targetPort : 8080
+
+...	            
+
+
+$ kubectl  apply  -f   javawebapp.yml
+
+-> It  will  create  one  LoadBalancer  here
+-> LBR  havaing  a  listener  and  it  is  listening on  port  80
+-> When  we  access  LBR  DNS  it  will forward  the  traffic  to  instance
+-> Delete  one  pod  and  see  another pod  is  scheduled  or  not
+$ kubectl   delete  pod <pod-name>
+
+-> It load  is  increasing  then  we  have  to  increase  pods
+
+Note : we can  increase  manually  or  we  can  do  autoscaling  dynamically (HPA)
+
+->  Stop one  worker node intentionally
+Note : POD will be scheduled  in  diff node (new node will be  created)
+-> we can  scale  our  deployment
+
+$ kubectl  scale  deployment  <name>  --replicas 14
+
+++++++++++++++++++++++++++++++++++++++++++++
+Deploy  One  More  application  into  K8S  using  Service
+++++++++++++++++++++++++++++++++++++++++++++
+
+similarly  make  the mavenwebapp.yml
+
+---
+# pod  manifest
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name:mavenwebapprs
+spec:
+   replicas: 1
+   selector : 
+       matchLabels :
+	app:  mavenwebapp
+   template :
+        metadata:
+              name: mavenwebapppod
+              labels :
+	app: mavenwebapp
+         spec:
+              containers:
+                - name : mavenwebappcontainer
+                   image : abhishek/javawebapp
+                   ports :
+	- containerPort : 8080 
+
+---
+#node-port  service  manifest
+apiVersion: v1
+kind: Service
+metadata:
+    name:mavenwebappsvc
+spec:
+    type: LoadBalancer
+    selector:
+          app: mavenwebapp
+    ports:
+         -port:80
+           targetPort : 8080
+
+...	    
+
+
+$ kubectl  apply  -f  mavenwebapp.yml
+
+-> now  we have  2  apps in  K8s  cluster ... 2  LBRs  available in AWS
+
+
+++++++++++++++++++
+Kubernetes  Ingress
+++++++++++++++++++
+          
+-> K8s  ingress  is  a resource  to  add  rules  for  routing  traffic  from  external  sources  to the services  in  the K8S cluster
+
+-> K8s  ingress  is  a native  K8S  resource  where  you  can  have  rules to  route traffic  from an external source to  service endpoints  residing  inside  the  cluster.
+
+-> It  requires an  ingress controller for routing  the  rules  specified in the ingress object
+
+-> Ingress controller is typically  a  proxy  service  deployed  in  the cluster . It  is nothing  but  a kubernetes  deployment exposed  to a  service.
+
+client ===> Ingress-managed-loadBalancer ===> service ===> pods
+
+
+-> stop both  services
+-> change both services to cluster-ip
+-> execute both services  as cluster-ip
+
+-> Now  both  are  running  inside  cluster we  can't  access  outside the  cluster.
+
+
+# git clone K8s-ingress
+$  git  clone  https://github.com/ashokitschool/kubernetes_ingress.git
+
+$ cd  kubernetes-ingress
+
+# Create namespace  and service-account
+$  kubectl  apply  -f  common/ns-and-sa.yml
+
+$ cat  common/ns-and-sa.yaml
+
+# create RBAC  and configMap
+$  kubectl  apply  -f  common/
+
+# Deploy Ingress  controller
+
+->  we have  2  options  to  deploy  ingress  controller
+
+1) Deployment
+2) DaemonSet
+
+$ kubectl  apply  -f  daemon-set/ngnix-ingress.yaml
+
+# Get ingress  pods using  namespace
+$ kubectl  get  all  -n  ngnix-ingress
+
+# create LBR  Service
+
+$  kubectl  apply  -f  service/loadbalancer-aws-elb.yaml
+
+Note  :  it  will  generate  LBR  DNS
+
+-> Map LBR  dns to  route 53 domain
+(use  subdomain  concept  for both url )
+
+http://javawebapp.ashokit.org/java-web-app
+http://mavenwebapp.ashokit.org/maven-web-app
+
++++++
+#  ingress-rules-path-based.yml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource-2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ashokit.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/java"
+            backend:
+              service:
+                name: javawebappsvc
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/maven"
+            backend:
+              service:
+                name: mavenwebappsvc
+                port:
+                  number: 80
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+k8s  HELM
++++++++++
+
+-> We deployed  our  apps  in Kubernetes  cluster using  Manifest  files
+-> Manifest  files  we  can  write in 2 ways
+
+1) JSON
+2) YML (more  demand)
+
+-> It  is difficult  to  write manifest  files for  our  applications
+-> Helm  is  a package  manager for  k8s  applications
+-> Helm  allows  you  to  install  or  deploy  applications  on  kubernetes  cluster  in  similar  manner  to  yum/apt  for  linux  distributions.
+-> Helm  lets  you fetch , deploy  and  manage the  lifecycle  of  applications both  3rd  party  apps and your own  applications
+Ex: promethus , graphana , ngnix-ingress  are third party apps
+
+-> Helm  introduces  several  familiar  concepts  such  as
+
+HELM  Chart ( package contains k8s  manifests-templates)
+HELM  Repositories which  holds  HELM  charts/packages
+A CLI  with  install /upgrade/remove  commands
+
+
+++++++++++++++++++
+Why  to  use  HELM ? 
+++++++++++++++++++
+
+-> Deploying  application on K8s  cluster  is  little  difficult
+-> As part of  app  deployment  we need  to  create  below  K8s  objects
+
+Deployment
+Service
+ConfigMaps / Secrets
+Volumes
+Ingress Rules
+HPA
+
+-> Helm  greatly   simplifies  the  process of creating  , deploying  and managing  application  K8s  cluster.
+-> Helm  also  maintains a  versioned  history if  very  chart ( application ) installation. If  something  goes  wrong , you can simply call  'helm rollback'.
+
+-> Setting  up  a single  application can  involve  creating multiple  independent  K8s  resources and each  resource  requires a  manifest  file.
+
+
+###################
+What  is  Helm  Chart
+###################
+
+->  HELM  chart  is  a bascically  just  a  collection  of  manifest  files  organized  in  a  specific directory  structure  that  describe  a  related  K8S  resource.
+
+-> There  are two  main  components  in  HELM  chart
+
+1) Template 
+2) Value 
+
+-> Templates and  values  renders  a manifest  which can  understand by  k8s.
+
+-> Helm  uses charts  to  pack  all the  required  k8s  components  ( Manifests )  for  an  application  to  deploy , run  and  scale .
+
+-> Charts  are  very  similar  to  RPM  and  DEB  packages  for Linux.
+
+Ex:  yum  install  git
+
+Note : it  will interact  with  repo  and it will  download  git
+
+
+
+###############
+HELM   Concepts
+###############
+
+-> Helm  packages  are  called  charts, and  they   consist  of  a few  YML  configuration files  and  some  templates  that  are  rendered  into  K8S  manifest   files .  Here is  the  basic  directory  structure  of  a chart.
+
+Charts :  dependent  charts  will  be  added  here
+
+templates :  contains  all  template  files
+
+Values :  it  contains  values  which  are  required  for  templates
+
+
+
+##################
+HELM   Installation
+##################
+
+$  curl  -fsSl  -o   get_helm.sh   https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+
+$ chmod  700  get_helm.sh
+
+$  ./get_helm.sh
+
+$ helm
+
+-> Check  do  we  have  metrics  server on the  cluster
+
+$  kubectl  top  pods
+$  kubectl  top  nodes
+
+# check  helm  repos
+$  helm  repo ls
+
+
+#Before  you  can  install  the  chart  you  will  need  to  add  the  metrics-server  repo to
+$  helm  repo  add  metrics-server  https://kubernetes-sigs.github.io/metrics-server/
+
+# install  the  chart 
+$ helm  upgrade  --install  metrics-server  metrics-server/metrics-server
+
+$ helm  list
+
+$  helm  delete  <release-name>
+
+
++++++++++++++++++++++++
+Kubernetes  Prometheus 
++++++++++++++++++++++++
+
+->  Prometheus  is  an  open-source  systems  monitoring  and  alerting   toolkit
+->  Prometheus  collects  and  stores  its  metrics  as  time  series data
+->  It provides  out-of-the-box  monitoring  capabilities  for  the  K8S  contianer   orchestration  platform.
+
+
+-> Grafana  is  a database   analysis  and  monitoring  tool
+-> Grafana  is  a  multi-platform  open  source  analytics  and  interactive  visualization  web  application
+
+-> It  provides charts , graphs  and  alerts  for the  web  when   connected  to  supported  data  sources.
+-> Grafana  allows  you  to  query ,  visualize  , alert  on and  understand  your   metrics no matter  where  they  are  stored .  Create ,  explore and  share dashboards.
+
+Note  :  Graphana  will  connect  with  prometheus  for  data  source.
+
+<talk abt  prometheus  architecture>
+
+
+######################################
+How  to  deploy Grafana  & Prometheus  in  K8s
+######################################
+
+-> Most  efficient  way  is  using  Helm  chart  to  deploy Prometheus  Operator
+
+
+########################
+Install  Prometheus  & Grafana
+########################
+
+#  Add  the  latest  helm  repository  in Kubernetes
+ $  helm  repo  add  stable  https://charts.helm.sh/stable
+
+# Add  prometheus  repo to  helm
+$  helm  repo  add  prometheus-community   https://prometheus-community.github.io/helm-charts
+
+# Update Helm  Repo
+$  helm  repo  update
+
+# search  Repo
+$  helm  search  repo  prometheus-community
+
+# install  prometheus  and  Graphana in  single  shot
+$ helm  install  stable  prometheus-community/kube-prometheus-stack
+
+#Get  all  pods
+$ kubectl   get  pods
+
+Node : you  should  see  prometheus  pods  running
+
+#Check  the  services
+$ kubectl  get  svc
+
+# by  default  prometheus  and  graphana  service  is  available  within  the  cluster  using  ClusterIP, to  access  them   outside  lets  change  it  either  NodePort  or  LoadBalancer.
+
+$ kubectl  edit svc  stable-kube-prometheus-sta-prometheus
+
+#Now edit  the  grafana  service
+$ kubectl  edit  svc  stable-grafana
+
+# verify  the  service  if  changed  to  LoadBalancer
+$ kubectl  get  svc
+
+To  access  Prometheus  web  interface  copy  Loadbalancer  URL  and  port  number  9090
+   
+To  access  Grafana  web  interface   copy  LoadBalancer  URL  and  Port Number  80
+
+UserName : admin
+Password  : prom-operator
+
+
+#########
+ELK  Stack
+#########
+
+-> The  ELK  Stack  is  a collection  of  three  open-source  products  -- ElasticSearch, Logstash, Kibana
+-> ELK  stack  provides  centralized  logging  in oder  to  identify  problems  with  servers  or  applications
+-> It  allows  you  to search  all  the  logs  in  a single  place
+
+E  stands  for : Elastic  Search -->  It  is  used  to  store logs
+L   stands  for  : Log Stash   -->  it  is  used  for  processing  logs
+k   stands  for :  Kibana  --->  it  is  a  visualization  tool
+
+
+FileBeat : Log  files
+
+MetricBeat  :  Metrics
+
+PacketBeat  :  Network  data
+
+HeartBeat  :  Uptime  Monitoring
+
+
+-> Filebeat  collect  data  from  the  log files  and   sends  it  to  logstash.
+-> Logstash  enhances  the  data  and  sends  it  to  Elastic search.
+-> elastic search  stores  and  indexes  the  data.
+-> Kibana  displays  the  data   stored  in   Elastic  Search.
+
+ 
+######################
+Installation  using  HELM
+######################
+
+Pre-requisites :
+
+EKS  Cluster
+Nodes : 4 GB  RAM
+Client Machine with  kubectl  & helm  configured
+
+
+$ Kubectl  create  ns  efk
+
+$  kubectl  get   ns
+
+$  helm  ls
+
+$  helm  repo  add  elastic  https://helm.elastic.co
+
+$  helm  repo  ls
+
+$  helm  show  values  elastic/elasticsearch  >> elasticsearch.values
+
+$ vi  elasticsearch.values
+
+->  replicas  as  1  & masternodes  as  1
+
+$  helm  install  elasticsearch  elastic/elasticsearch  -f  elasticsearch.values  -n  efk
+
+$  helm  ls  -n  efk
+
+$ kubectl  get  all  -n  efk
+
+$ helm  show  values  elastic/kibana  >>  kibana.values 
+
+$ vi  kibana.values
+
+-> set  replicas  as 1
+-> change  service  type from  ClusterIP  to  LoadBalancer
+->  Change  Port  to  80
+
+$  helm  install  kibana  elastic/kibana  -f  kibana.values  -n  efk
+
+$ kubectl  get  all  -n  efk
+
+$  helm   install  filebeat  elastic/filebeat  -n  efk
+
+$ helm  install  metricbeat  elastic/metricbeat  -n  efk
+
+
+Note : Access  Kibana  using  Load  Balancer  DNS
+
+##############
+DEVOPS  Teams
+##############
+-> One  Devops  team  will  handle  multiple  projects  in the  company
+-> As  a  team  we  need  to  take  care of  infrastructure , Automation , Pipeline  creation , Build  &  Deployments  for  all  the  projects  which  are  assigned  to  our  team
+
+-> One   Devops  team will  be divided  into  2  parts
+
+	1) NON-Prod  Team
+	2) Prod  Team ( release) 
+-> Non  prod  team  will handle  infrastructure , Automation , Pipelines ,  Builds, Deployments  for  Non-Prod environments  ( Dev,SIT, UAT  and  Pre-Prod)
+-> Prod/Release Team    will  handle  Automation , Pipelines , Builds , Deployment  for  Prod Environment
+
+Note :  New Joinee will be  part of Non-Prod   team for 3   to  6 months. New  Joinees  should interact  with  PROD  team  to  understand  PROD  deployment process.  Non  Prod  team  members  should  join  release  meeting  where  there  is  a  PROD  deployment.
+  
+Note :  Few  companies  will use  different tools  for  PROD  Deployment
+
+-> JENKINS  we  are  using  for Non-PROD  deployment
+-> UDeploy  we  are  using  for  PROD  deployment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
