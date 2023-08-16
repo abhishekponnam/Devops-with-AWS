@@ -1,0 +1,323 @@
+##################
+Terraform  Installation
+##################
+
+1) Create  EC2  instance  (RED HAT  Linux)
+
+2) Connect  to  EC2  VM  using Mobaxterm
+
+3) Switch  to  root  user
+	$  sudo  su-
+
+4)install  unzip  software
+	$ yum  install  wget  unzip vim  -y
+
+5) Dowload  Terraform  software (https://www.terraform.io/downloads)
+
+$ sudo  yum  install -y  yum-utils
+$  sudo yum-config-manager  --add-repo  https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+$ sudo  yum  -y  install terraform
+
+6) Check Terraform Versio 
+$ terraform  -v
+
+
+
+
+#######################################
+Working  with  EC2  Instance  using  Terraform
+#######################################
+
+1) Create IAM  user  with  Programmatic  Access ( IAM  user should  have  EC2  FullAccess)
+
+2) Download  Secret Key  and  Access Key
+
+3) Write  First  Terraform  Script
+
+$  mkdir  terraformscript
+$  cd  terraformscript
+$  vi  FirstTFScript.tf
+
+-------------------------------First Terraform  Script  File (Hashicorp language)----------------------------
+
+
+provider "aws" {
+	
+	region = "ap-south-1"
+	access_key  =""
+	secret_key = ""
+
+}
+
+resource "aws_instance" "MyAWSvm" {
+	ami= ""
+	instance_type = "t2.micro"
+	key_name = "linux"
+	security_groups = ["abhishek_security_group"]
+	tags = {
+	        Name = "MyEC2-VM"
+	}
+
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+10)  Intialize Terraform  using init command
+$ terraform  init
+
+11) Validate your script (check the errors are occuring or not)
+$ terraform  validate
+
+12) Fomat the script (indent  spaces)
+$  terraform  fmt
+
+13) create   Execution  Plan  for  Your Script
+$  terraform  plan
+
+14) Create  the Infrastructure
+$   terraform  apply
+
+Note : When the script got executed  it  will store  that state in  a  file.  if  we  execute script  again  it  will  not  create .  if you  delete  that  state  file  and  execute script  again  then  it  will  create it.
+
+15) Destory Infrastructure
+
+$  terraform   destroy  
+	(or)
+$  terraform  destroy   -auto-approve
+
+
+-> In  first  script  we  kept  provider  and  resources  info   in   single  script  file. We  can  keep provider  and  resources  information  in   seperate  files
+
+Ex:  proder.tf  &  main.tf
+
+
+
+
+##############################
+Script  to  create   Multiple  Instances
+##############################
+
+
+provider "aws" {
+	
+	region = "ap-south-1"
+	access_key  =""
+	secret_key = ""
+
+}
+
+resource "aws_instance" "MyAWSvm" {
+	count = "2"
+	ami= ""
+	instance_type = "t2.micro"
+	key_name = "linux"
+	security_groups = ["abhishek_security_group"]
+	tags = {
+	        Name = "MyEC2-VM"
+	}
+
+}
+
+
+Note : Once it  is  created , then destory  infrastructure  using  below  command
+
+$  terraform  destroy  -auto-approve
+
+
+++++++++++++++++++++++++
+Variable  in  TypeScript
+++++++++++++++++++++++++
+
+-> We  can maintain  variables  in  seprate  file
+
+$  vi   var.tf
+
+
+variable  "ami"{
+	description = "Amazon Machine Image value"
+	default = "ami-05c8ca4485f8b138a"
+}
+
+
+variable "instance_type"{
+
+	description = "Amazon  Instance  Type"
+	default = "t2.micro"
+}
+
+variable "instances_count"{
+
+	description= "Total  No.of  Instances"
+	default =  "2"
+}
+ 
+
+-> Create main  tf  file  using   variables
+
+$  vi  main.tf
+
+provider  "aws" {
+
+	region="ap-south-1a"
+	access_key= ""
+	secret_key=""
+}
+
+resource   "aws_instance"  "AWSServer" {
+
+	count= "${var.instance_count}"
+	ami = "${var.ami}"
+	instance_type = "${var.instance_type}"
+	key_name = "linux"
+	security_groups = ["default_security_group"]
+	tags = {
+	Name = "EC2 VM- ${count.index}"
+	}
+}
+
+
+Note:  We can  supply  variables  in  runtime  also
+
+-> Remove  instance_count  variable  from  var.tf   file  and  pass  like  below
+
+$   terraform  apply  -var  instances_count = "2"  -auto-aprove
+
++++++++++++++++++++++++++++
+Comments  in   Terraform Script
++++++++++++++++++++++++++++
+
+#  -  Single  line  comment
+// -  Single  line  comment (java style)
+/*  and  */  -  multi line  comments
+
+
+Dealing  with  Secret  key  and  Access Key
++++++++++++++++++++++++++++++++++
+
+->  We  have  configured secret_key  and   access_key  in  terraform  script  file.  Instead  of  that  we  can  configure  them  as  environment   variables.
+
+$ export AWS_ACCESS_KEY_ID = ""
+$ export  AWS_SECRET_ACCESS_KEY = ""
+
+->  To  verify environment  variables we  can  use  echo command
+
+$  echo  $AWS_ACCESS_KEY_ID
+$  echo  $AWS_SECRET_ACCESS_KEY
+
+-> Now  remove credentials  from  terraform script  and  execute it.
+
+Note :  We are  setting provider credentials in  terminal  so   these variables  will be  available  for  current  session . If  we want  to set  permanently  add  them   in  .bashrc  file.
+
+
+++++++++++++++++++++++
+Working  with  User Data
+++++++++++++++++++++++
+
+->  It  is  used  to execute  script  when instance  launched  for  first time.
+
+-> Create Userdata   in   one  file
+
+$ vi  installHttpd.sh
+
+#!/bin/bash
+sudo  su
+yum  install  httpd  -y
+cd  /var/www/html
+echo  "<html> <h1> HELLO  WORLD....!</h1></html> "  > index.html
+service httpd start 
+
+
+$ chmod  u+x  installHttpd.sh
+
+-> Create  main script  in  main.tf  file
+
+->  vi  main.tf
+
+
+provider  "aws" {
+	region = "ap-south-1"
+}
+
+resource  "aws_instance"  "AWServer"{
+	ami = "ami-05c8ca4485f8b138a"
+	instance_type = "t2.micro"
+	key_name = "linux"
+	security_groups = ["default_security_group"]
+	user_data = "${file ("installHttpd.sh")}"
+	tags = {
+	     Name="Web- Server"
+	}
+}
+
+
+----------------------------------------------------------------------------------
+$  terraform  init
+$  terraform  fmt
+$  terraform   validate
+$  terraform  plan
+$  terraform   apply 
+
+================  Terraform Script  for  S3  Bucket Creation ==============
+
+provider  "aws" {
+
+	region = "ap-south-1"
+}
+
+resource  "aws_s3_bucket"  "newS3bucket"  {
+
+	bucket = "newS3bucket"
+	acl= "private"
+	versioning {
+	enabled  =  true 
+	}
+	tags = {
+	Name =  "  S3  bucket"
+	}
+}
+
+
+
+
++++++++++++++++++++++++++++++++++++++
+Create  MySQL  DB  in  AWS  using  Terraform
++++++++++++++++++++++++++++++++++++++
+
+-> Provider  RDS   access  for  IAM  user
+
+-> Execute   below  script  to  create  MySQL  DB  in  AWS  Cloud
+
+provider  "aws" {
+
+	region = "ap-south-1"
+}
+
+resource  "aws_db_instance"  "default"  {
+
+	allocated_storage = 100
+	engine  = "mysql"
+	engine_version = "5.7"
+	instance_class  =  "db.t3.micro"
+	name   =  "mydb"
+	username = "user"
+	password =  "user"
+	parameter_group_name  =  "default.mysql5.7"
+	skip_final_snapshot =  true
+}
+
+
+
+for more information  visit : https://developer.hashicorp.com/terraform
+
+
+
+
+
+
+
+
+
+
+
+
+
